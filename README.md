@@ -11,7 +11,8 @@ points $((i+\frac12)/n,(\sigma(i)+\frac12)/n)$: the identity permutation is the 
 The note proves this for every layered permutation (a concatenation of decreasing runs of consecutive values) and its
 images under the symmetries of the square: each such permutation other than the identity and the reversal is strictly
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
-blocks of at most five consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four and five.
+blocks of at most six consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four, five
+and six.
 The general case remains open; the computations of Section 5 find no counterexample among all permutations with
 $n\le 8$.
 
@@ -42,6 +43,11 @@ Python 3 with numpy and scipy. Each script writes its output next to itself.
   smallest margin, separately as a check. `gq_cross_formula_res.py` compares the crossing-band formula used in
   `gq_cross_iv.py` with a direct evaluation of the quintile partition on jittered grids of 500, 1000 and 2000 points a
   side; the differences shrink with the grid.
+- Blocks of six: `r6_thirds_sign.py` (the partition of Proposition 4.6, thirds of $S$ each split at $V=0$, with the
+  best assignment, on a grid of bands of mass at most 6/9; positive for all 460 blocks, output `r6_thirds_sign.out`) and
+  `r6_ts_ctrl.py` (the identity is negative and the reversal positive under the same partition). `r6_ts_iv.py` is the
+  interval-arithmetic proof of Proposition 4.6 for all 460 blocks (31,694 boxes, output `r6_ts_iv.out`);
+  `r6_ts_iv_ctrl.py` checks its enclosures against the floating-point evaluation at point bands (output `ctrl_ts.out`).
 
 ## Funding
 

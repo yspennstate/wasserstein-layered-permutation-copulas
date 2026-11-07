@@ -40,8 +40,8 @@ runs, other than the identity and the full reversal. The proof re-cuts the optim
 union of the moved strips, writes the gain as a weighted sum of two-cell comparisons, and settles each comparison by a
 dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a diagonal band. The same re-cut, done
 in two steps inside a window of three or four strips, gives the strict inequality for every permutation that splits
-into blocks of consecutive values of length at most five (each block reversed or permuted arbitrarily), once $n\ge9$;
-for blocks of length four and five the positivity of explicit functionals is proved with interval arithmetic.
+into blocks of consecutive values of length at most six (each block reversed or permuted arbitrarily), once $n\ge9$;
+for blocks of length four, five and six the positivity of explicit functionals is proved with interval arithmetic.
 \end{abstract}
 
 \maketitle
@@ -93,7 +93,7 @@ Then $A_n(\sigma)>A_n(\mathrm{id})$. The same holds for the images of $\sigma$ u
 \end{theorem}
 
 For $n=2$ every permutation is $\mathrm{id}$ or $\mathrm{rev}$, so the theorem is about $n\ge 3$. Section~\ref{sec:windows}
-extends Theorem~\ref{thm:main} to permutations built from blocks of length at most five (Theorem~\ref{thm:windows}).
+extends Theorem~\ref{thm:main} to permutations built from blocks of length at most six (Theorem~\ref{thm:windows}).
 
 \section{The identity and the re-cut}\label{sec:recut}
 
@@ -207,7 +207,7 @@ about $0.344\,n^{-1/2}$ ($n=8,12,16$). The corner transposition is the cheapest 
 the identity is of order $n^{-5/2}$.
 \end{remark}
 
-\section{Windows of three, four and five values}\label{sec:windows}
+\section{Windows of three to six values}\label{sec:windows}
 
 Let $r\ge2$, let $\tau$ be a permutation of $\{0,\dots,r-1\}$, $0\le k\le n-r$, and let $\sigma(k+i)=k+\tau(i)$ for
 $0\le i\le r-1$, $\sigma$ the identity elsewhere. Put $u'_i=i+\tau(i)-(r-1)$ and $v'_i=i-\tau(i)$. The moved points
@@ -403,21 +403,51 @@ $-Uw$ with $U$ the sum of the positive $u'_i$, and the strip term lies in $[0,6w
 $F_q\ge\frac35(v'_{i_5}-v'_{i_1})(1-w)-(U+6)w$, which decreases in $w$ and is positive at $w=0.05$ in all $24$ cases (smallest value $1.73$).
 \end{proof}
 
+\begin{proposition}\label{prop:r6}
+Let $\tau$ be one of the $460$ indecomposable permutations of $\{0,\dots,5\}$ other than the reversal. On every band $U$
+of mass $\rho\le6/9$ the following partition gives $F>0$ for a suitable assignment of its cells to the indices: cut $U$
+at the terciles of $S$ and each of the three pieces at $V=0$.
+\end{proposition}
+
+\begin{proof}
+Write $U=\{\alpha<s<\beta\}$, let $\alpha=x_0<x_1<\dots<x_6=\beta$ be the sextiles of $S$ on $U$, and let $e_j$ and $\ell_j$ be
+the means of $S$ and of $L(S)$ on the strip $(x_j,x_{j+1})$. The six cells have mass $\rho/6=1/n$. Given $S=s$, $V$ is
+uniform on $(-L(s),L(s))$, so the cell of the $k$-th third on the side $\pm V>0$ has $\E[S]=\frac12(e_{2k}+e_{2k+1})$ and
+$\E[V]=\pm\frac14(\ell_{2k}+\ell_{2k+1})$. If these two cells go to the indices $i_k^-$ and $i_k^+$, then
+\[
+F=\sum_{j=0}^{5}\bigl(A_je_j+B_j\ell_j\bigr),\qquad A_j=\tfrac12\bigl(u'_{i_k^-}+u'_{i_k^+}\bigr)-(2j-5),\quad
+B_j=\tfrac14\bigl(v'_{i_k^+}-v'_{i_k^-}\bigr),\quad k=\lfloor j/2\rfloor .
+\]
+On an interval $(x,y)\subset(0,1)$ both means equal $2(x^2+xy+y^2)/(3(x+y))$; on $(x,y)\subset(1,2)$ the mean of $S$ is
+$2$ minus the same expression in $2-y,2-x$, and the mean of $L(S)$ is $2$ minus the mean of $S$; across $1$ both are
+mixtures of the two pieces, weighted by mass. For $\beta\le1$ the similarity $(s,v)\mapsto(s,v)/\beta$ gives
+$F=\beta\,G(\alpha/\beta)$ with $G$ the value on $\{t<s<1\}$, $t\in[0,1]$; for $\alpha\ge1$ the map $s\mapsto2-s$ leaves $V$
+unchanged and reduces to the same family with every $u'_i$ replaced by $-u'_i$. Across the diagonal the band is given by
+$(\alpha,2-\beta)\in[0,1]^2$, and $\rho\le6/9$ is $\alpha^2+(2-\beta)^2\ge2/3$. The sextiles increase in $\alpha$ and in
+$\beta$, so a box of parameters gives an enclosure of each $x_j$ from its corners. On each box we take the assignment that
+is best at the centre, enclose every mean in interval arithmetic and intersect the enclosure with the a priori range of
+that mean ($e_j\in(x_j,x_{j+1})$, and $\ell_j$ between the minimum and maximum of $L$ on that strip); the intersection is
+what controls thin bands across the diagonal, where all the means are close to $1$ and $F$ is close to
+$\frac12\sum_k(v'_{i_k^+}-v'_{i_k^-})$. Boxes are bisected until the lower bound is positive. For all $460$ blocks this
+takes 31{,}694 boxes, with no failures; the smallest lower bound of $F$ is $0.0015$.
+\end{proof}
+
 \begin{theorem}\label{thm:windows}
 Let $n\ge9$, and let $\sigma\ne\mathrm{id},\mathrm{rev}$ map each interval $\{k_\ell,\dots,k_{\ell+1}-1\}$ of a cut
 $0=k_0<\dots<k_m=n$ onto itself, acting on each interval either by reversal or by a permutation of an interval of
-length at most five. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
-symmetries of the square. If every interval of length four or five is reversed or fixed, $n\ge4$ suffices.
+length at most six. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
+symmetries of the square. If every interval of length four, five or six is reversed or fixed, $n\ge4$ suffices.
 \end{theorem}
 
 \begin{proof}
-Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most five is
+Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most six is
 a fixed point, a reversal, one of the two 3-cycles, one of the twelve blocks of Proposition~\ref{prop:r4}, or one of the
-seventy blocks of Proposition~\ref{prop:r5}; a reversed
+seventy blocks of Proposition~\ref{prop:r5}, or one of the $460$ blocks of Proposition~\ref{prop:r6}; a reversed
 piece of length $n$ would make $\sigma=\mathrm{rev}$. By Lemma~\ref{lem:window} the gain is at least the sum over the
 moved pieces of $F_\ell/(2n^2)$, and each $F_\ell$ is positive: reversals by Proposition~\ref{prop:block}, 3-cycles by
 Proposition~\ref{prop:r3}, the twelve blocks by Proposition~\ref{prop:r4}, since four strips have mass $4/n\le4/9$, and the
-seventy blocks by Proposition~\ref{prop:r5}, since five strips have mass $5/n\le5/9$.
+seventy blocks by Proposition~\ref{prop:r5}, since five strips have mass $5/n\le5/9$, and the $460$ blocks of six by
+Proposition~\ref{prop:r6}, since six strips have mass $6/n\le6/9$.
 \end{proof}
 
 For $n\le8$ every permutation was checked numerically (Section~\ref{sec:numerics}). The blocks $1302$ and $1320$ need the
@@ -446,13 +476,18 @@ $5/9$: positive for all $70$, smallest value of $F/\rho$ equal to $0.756$. On th
 positive for $24$ of the $25$ orbits and negative for the orbit of $12403$, which is why that orbit takes the $s$ then $v$
 partition. For $12403$ the closed forms in the proof of Proposition~\ref{prop:r5} agree with the direct evaluation at
 three bands.
+\item For the $460$ blocks of six values, the partition of Proposition~\ref{prop:r6} with the best assignment, on the
+same kind of grid of bands of mass at most $6/9$ (with two thinner masses added): positive for all $460$, smallest value of
+$F/\rho$ equal to $1.04$, attained by $123450$ and $501234$ on $\{0<s<\sqrt{4/3}\}$. For the identity the same partition
+gives negative values, as it must. The closed forms used in the interval enclosures agree with the direct evaluation
+through the integrals of $sL(s)$ and $L(s)^2$ to $10^{-6}$ at the bands checked.
 \end{enumerate}
 
 \section{What remains}
 
-Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most five
-values. For blocks of six or more values the partitions of Section~\ref{sec:windows} extend, with sextiles in place of
-quintiles, but the positivity of the resulting functionals on every band of the allowed mass is open. On the whole square a cut along one direction is not
+Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most six
+values. For blocks of seven or more values the partition of Proposition~\ref{prop:r6} has natural analogues (quantile
+cells of $S$ split at $V=0$, or at quantiles of $V$), but their positivity on every band of the allowed mass is open. On the whole square a cut along one direction is not
 enough: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells optimally never beats the
 strips for any $\theta$ when $n=4$. A proof of \eqref{An} along these lines would need cuts whose direction varies across
 the square. For $n\le8$ the inequality rests on the computation of Section~\ref{sec:numerics}.
