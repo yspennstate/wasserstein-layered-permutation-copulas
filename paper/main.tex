@@ -42,7 +42,8 @@ dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a dia
 in two steps inside a window of three or four strips, gives the strict inequality for every permutation that splits
 into blocks of consecutive values of length at most eight (each block reversed or permuted arbitrarily), once $n\ge9$,
 and of length at most nine once $n\ge10$; for blocks of length four to nine the positivity of explicit functionals is
-proved with interval arithmetic.
+proved with interval arithmetic. For $n\le9$ the inequality is proved for every permutation by an exact rational
+computation with Laguerre cells.
 \end{abstract}
 
 \maketitle
@@ -80,8 +81,9 @@ $\pi$, the last limit by the same argument applied to the diagonal. So \eqref{An
 Conjecture~\ref{conj}.
 
 The map $A_n$ is invariant under the eight symmetries of the square acting on permutation matrices, so
-$A_n(\mathrm{rev})=A_n(\mathrm{id})$ for the full reversal $\mathrm{rev}(i)=n-1-i$. Numerically \eqref{An} holds
-for every permutation when $n\le 8$, with equality only at $\mathrm{id}$ and $\mathrm{rev}$ (Section~\ref{sec:numerics}).
+$A_n(\mathrm{rev})=A_n(\mathrm{id})$ for the full reversal $\mathrm{rev}(i)=n-1-i$. For $n\le9$, \eqref{An}
+holds for every permutation, with equality only at $\mathrm{id}$ and $\mathrm{rev}$ (Proposition~\ref{prop:small}, a
+computer-assisted proof in exact rational arithmetic).
 
 \begin{definition}
 A permutation $\sigma$ is \emph{layered} if there are integers $0=k_0<k_1<\dots<k_m=n$ such that, for each $\ell$,
@@ -523,18 +525,50 @@ Proposition~\ref{prop:r8}, since eight strips have mass $8/n\le8/9$, and the $27
 Proposition~\ref{prop:r9}, since for $n\ge10$ nine strips have mass $9/n\le9/10$.
 \end{proof}
 
-For $n\le8$ every permutation was checked numerically (Section~\ref{sec:numerics}). The blocks $1302$ and $1320$ need the
+For $n\le9$ every permutation is covered by Proposition~\ref{prop:small} below. The blocks $1302$ and $1320$ need the
 restriction on the mass: their $v$ then $s$ value is negative on nearly full bands, $\{0<s<1.8\}$ for $1302$ and $\{0.2<s<2\}$ for $1320$.
+
+\begin{proposition}\label{prop:small}
+For $3\le n\le 9$ and every permutation $\sigma\ne\mathrm{id},\mathrm{rev}$ of $\{0,\dots,n-1\}$,
+$A_n(\sigma)>A_n(\mathrm{id})$.
+\end{proposition}
+
+\begin{proof}
+For a measure $\mu=\frac1n\sum_i\delta_{p_i}$ on $Q$ and weights $\psi\in\mathbb{Q}^n$ let
+$L_i(\psi)=\{x\in Q:|x-p_i|^2-\psi_i\le|x-p_j|^2-\psi_j\text{ for all }j\}$ be the Laguerre cells. Kantorovich duality
+gives the lower bound
+\[
+W_2^2(\mu,\lambda)\ \ge\ \sum_i\int_{L_i(\psi)}\bigl(|x-p_i|^2-\psi_i\bigr)\,dx+\frac1n\sum_i\psi_i ,
+\]
+since on $L_i(\psi)$ the integrand equals $\min_j(|x-p_j|^2-\psi_j)$. In the other direction, sending each cell to its
+point couples $\lambda$ with $\sum_i|L_i(\psi)|\,\delta_{p_i}$ at cost $C(\psi)=\sum_i\int_{L_i(\psi)}|x-p_i|^2\,dx$,
+and moving the excess mass $e(\psi)=\sum_i(|L_i(\psi)|-\frac1n)^+$ over a distance at most $\sqrt2$ gives
+\[
+W_2(\mu,\lambda)\ \le\ C(\psi)^{1/2}+\bigl(2e(\psi)\bigr)^{1/2}.
+\]
+The points $p_i$ have rational coordinates, so for rational $\psi$ every cell is a convex polygon with rational
+vertices and $C(\psi)$, $e(\psi)$ and the lower bound are rational numbers; the cross term $2(2C(\psi)e(\psi))^{1/2}$ in
+the square of the upper bound is bounded above by a rational. For each $n$ we take $\psi$ for $\mu_{\mathrm{id}}$, and
+for one $\sigma$ in each class under the eight symmetries of the square, from Newton's method on the dual, rounded to
+multiples of $2^{-40}$, and evaluate both bounds in exact rational arithmetic. In every case the upper bound for
+$\mu_\sigma$ lies strictly below the lower bound for $\mu_{\mathrm{id}}$ (Section~\ref{sec:numerics}). Since
+$W_2^2(\mu_\sigma,\lambda)=\E|X|^2+\E|Z|^2-2A_n(\sigma)$ with $\E|Z|^2$ independent of $\sigma$, and $A_n$ is constant
+on each class, this proves the claim.
+\end{proof}
 
 \section{Computations}\label{sec:numerics}
 
 All computations use exact moments of $S$ and one-dimensional quadrature of the law of $V$ on a band.
 \begin{enumerate}[leftmargin=*]
-\item Check of \eqref{An} over every permutation for $n\le8$ (one per class under the symmetries of the square;
-5,282 classes at $n=8$), with $A_n$ computed by a smoothed semi-discrete dual on a $40\times40$ grid of cells.
-No permutation falls below the identity; the smallest positive gap is the
-corner adjacent transposition ($n^2(A_n(\sigma)-A_n(\mathrm{id}))=0.1215$ at $n=8$), and the first non-layered
-permutations are corner 3-cycles ($0.3944$ at $n=8$).
+\item The certificate of Proposition~\ref{prop:small}: one permutation per class under the symmetries of the square,
+$1,6,22,114,693,5{,}281$ and $46{,}065$ classes for $n=3,\dots,9$ besides the class of $\mathrm{id}$ (these are the
+known class counts less one). Newton's method on the dual converges in at most six steps with cell masses equal to
+$1/n$ to $10^{-14}$. In every case the smallest gap is at the corner adjacent transposition, with
+$n^2(A_n(\sigma)-A_n(\mathrm{id}))$ equal to $0.1459$, $0.1620$, $0.1528$, $0.1402$, $0.1298$, $0.1214$, $0.1145$ for
+$n=3,\dots,9$; the rounding of the weights and the excess mass lower the certified margin by less than $10^{-5}$ in
+$W_2^2$. As a control the
+same procedure applied to $\mathrm{id}$ and $\mathrm{rev}$ gives an upper bound above the lower bound, as it must. The
+first non-layered permutations are corner 3-cycles ($0.3935$ at $n=8$).
 \item The bound $D$ for every block reversal, $3\le n\le48$, $2\le r\le n-1$, every $k$: all positive, with minimum at the
 corner adjacent transposition, $n^{5/2}D=0.2761$, matching the closed form above. Quadrature error below $10^{-8}$.
 \item The identity of Lemma~\ref{lem:split} applied to $D$, checked against the direct evaluation for $n=5,8,13$ and
@@ -583,7 +617,9 @@ analogues (pieces of $S$ made of one or two quantile strips, the pairs split at 
 of the allowed mass is open. On the whole square a cut along one direction is not
 enough: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells optimally never beats the
 strips for any $\theta$ when $n=4$. A proof of \eqref{An} along these lines would need cuts whose direction varies across
-the square. For $n\le8$ the inequality rests on the computation of Section~\ref{sec:numerics}.
+the square. For $n\le9$ the inequality rests on the exact computation of Proposition~\ref{prop:small}; the same
+certificate applies to larger $n$, at the cost of one Laguerre diagram per class (about $4.5\times10^5$ classes at
+$n=10$).
 
 \section*{Acknowledgements and funding}
 The research presented in this paper was supported by the European Research

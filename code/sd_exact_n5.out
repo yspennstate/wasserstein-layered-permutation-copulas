@@ -1,0 +1,24 @@
+# n=5 exact lower bound for W2^2(identity) 0.1049397241635742 (float of a rational)
+01243 ok 1.222390e-02 excess 5.5e-13
+01324 ok 2.753691e-02 excess 1.1e-12
+01342 ok 3.353793e-02 excess 1.4e-12
+01432 ok 3.525055e-02 excess 2.7e-12
+02143 ok 3.570436e-02 excess 4.3e-13
+02314 ok 4.628643e-02 excess 1.2e-13
+02341 ok 4.703505e-02 excess 1.5e-12
+02413 ok 5.433544e-02 excess 8.5e-13
+02431 ok 5.152961e-02 excess 1.1e-12
+03214 ok 5.330280e-02 excess 1.0e-12
+03241 ok 5.700597e-02 excess 3.3e-13
+03412 ok 5.357677e-02 excess 4.0e-13
+03421 ok 5.039646e-02 excess 1.5e-12
+04231 ok 5.591695e-02 excess 8.3e-13
+04321 ok 4.441546e-02 excess 1.8e-13
+10243 ok 2.428279e-02 excess 1.6e-12
+10342 ok 4.116915e-02 excess 9.1e-13
+10432 ok 4.222857e-02 excess 4.5e-13
+12403 ok 5.640040e-02 excess 1.0e-12
+13042 ok 5.904913e-02 excess 8.9e-13
+13402 ok 5.774317e-02 excess 1.7e-12
+14203 ok 6.271750e-02 excess 0.0e+00
+# done

@@ -13,8 +13,8 @@ images under the symmetries of the square: each such permutation other than the 
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
 blocks of at most eight consecutive values, and of at most nine when $n\ge10$, with a computer-assisted proof in interval
 arithmetic for the blocks of four to nine.
-The general case remains open; the computations of Section 5 find no counterexample among all permutations with
-$n\le 8$.
+For $n\le9$ the statement is proved for every permutation (Proposition 4.11) by an exact rational computation with
+Laguerre cells. The general case remains open.
 
 ## Code
 
@@ -75,6 +75,13 @@ Python 3 with numpy and scipy. Each script writes its output next to itself.
   `r9_orbit_ctrl.py` checks this relation and the invariance under the inverse from the cell integrals (output
   `r9_orbit_ctrl.out`), and `r9_iv_ctrl.py` checks the enclosures at point bands, including the reflection (output
   `r9_iv_ctrl.out`).
+- Every permutation for $n\le9$: `sd_fast.py N` solves the semi-discrete problem between the grid points and $\lambda$
+  (Laguerre cells clipped to the square, Newton's method on the dual) for one permutation in each class under the
+  symmetries of the square (outputs `sd_scan_n3.out` to `sd_scan_n9.out`). `sd_exact.py N` is the proof of
+  Proposition 4.11: with the weights rounded to multiples of $2^{-40}$ it evaluates, in exact rational arithmetic, a dual
+  lower bound for the identity and a primal upper bound for each class (outputs `sd_exact_n3.out` to `sd_exact_n9.out`,
+  one line per class, `ok` when the upper bound lies below the lower bound). `sd_exact_ctrl.py` runs the same bounds on
+  the identity and the reversal, where they must not separate (output `sd_exact_ctrl.out`).
 
 ## Funding
 

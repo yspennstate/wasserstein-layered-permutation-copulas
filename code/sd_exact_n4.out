@@ -1,0 +1,8 @@
+# n=4 exact lower bound for W2^2(identity) 0.1074344635310912 (float of a rational)
+0132 ok 2.024984e-02 excess 5.0e-13
+0213 ok 3.872610e-02 excess 1.4e-12
+0231 ok 4.531683e-02 excess 6.1e-13
+0321 ok 4.293597e-02 excess 8.2e-14
+1032 ok 3.451780e-02 excess 0.0e+00
+1302 ok 5.535113e-02 excess 0.0e+00
+# done

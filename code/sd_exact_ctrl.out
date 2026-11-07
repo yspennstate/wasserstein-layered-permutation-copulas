@@ -1,0 +1,4 @@
+n=5 01234 U-L +1.349e-06 (must be >= 0: the certifier cannot prove the diagonal beats itself)
+n=5 43210 U-L +1.349e-06 (must be >= 0: the certifier cannot prove the diagonal beats itself)
+n=7 0123456 U-L +2.405e-06 (must be >= 0: the certifier cannot prove the diagonal beats itself)
+n=7 6543210 U-L +2.405e-06 (must be >= 0: the certifier cannot prove the diagonal beats itself)
