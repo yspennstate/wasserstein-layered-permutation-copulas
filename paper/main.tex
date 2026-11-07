@@ -1,0 +1,260 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem,booktabs}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+
+\hypersetup{pdftitle={Layered permutation copulas are closer to the uniform law than the diagonal},pdfauthor={Yitzchak Shmalo}}
+
+\title[Layered permutations and the farthest copula]{Layered permutation copulas are closer to the uniform law than the diagonal}
+\author{Yitzchak Shmalo}
+\address{Einstein Institute of Mathematics, The Hebrew University of Jerusalem, Jerusalem, Israel}
+\email{yitzchak.shmalo@gmail.com}
+\date{7 November 2026}
+
+\begin{document}
+
+\begin{abstract}
+Schrott conjectured that among all copulas on the unit square, the diagonal and the antidiagonal couplings are the
+farthest from the uniform law in the quadratic Wasserstein distance, at squared distance $1/10$. By density of
+permutation copulas the conjecture is implied by a statement about $n$ equally weighted grid points: for every
+permutation $\sigma$ of $\{0,\dots,n-1\}$, the points $\bigl((i+\frac12)/n,(\sigma(i)+\frac12)/n\bigr)$ are no farther
+from the uniform law than the diagonal points. We prove this, with strict inequality, for every layered permutation,
+that is, every permutation obtained by cutting $0,\dots,n-1$ into runs of consecutive values and reversing some of the
+runs, other than the identity and the full reversal. The proof re-cuts the optimal partition of the identity on the
+union of the moved strips, writes the gain as a weighted sum of two-cell comparisons, and settles each comparison by a
+dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a diagonal band.
+\end{abstract}
+
+\maketitle
+
+\section{The problem}
+
+Let $\lambda$ be Lebesgue measure on $Q=[0,1]^2$. A copula is a probability measure on $Q$ with uniform marginals.
+Schrott \cite{Schrott} proved that among all couplings of $n$ standard Gaussians, the ones farthest from the standard
+Gaussian on $\R^n$ in $W_2$ are the signed diagonals, and stated the uniform analogue as a conjecture.
+
+\begin{conjecture}[{\cite[Conjecture~1.1]{Schrott}}]\label{conj}
+For every copula $\pi$ on $Q$, $W_2^2(\pi,\lambda)\le 1/10$, with equality for the diagonal coupling.
+\end{conjecture}
+
+For a probability measure $\mu$ on $Q$ write $V(\mu)=\max\E[X\cdot Z]$ over couplings of $X\sim\lambda$ and $Z\sim\mu$.
+Since $W_2^2(\mu,\lambda)=\E|X|^2+\E|Z|^2-2V(\mu)$ and $\E|Z|^2=2/3$ for every copula, Conjecture~\ref{conj} says that
+$V(\pi)\ge V(\text{diagonal})$ for every copula $\pi$.
+
+Fix $n\ge 2$, put $a_i=(i+\frac12)/n$ for $0\le i\le n-1$, and for a permutation $\sigma$ of $\{0,\dots,n-1\}$ let
+$\mu_\sigma=\frac1n\sum_i\delta_{p_i}$ with $p_i=(a_i,a_{\sigma(i)})$, and $A_n(\sigma)=V(\mu_\sigma)$. Both marginals of
+$\mu_\sigma$ are the uniform law on the grid $\{a_i\}$, so $\E|Z|^2$ does not depend on $\sigma$, and
+$A_n(\sigma)\ge A_n(\mathrm{id})$ says that $\mu_\sigma$ is no farther from $\lambda$ than the diagonal points. Consider
+\begin{equation}\label{An}
+A_n(\sigma)\ge A_n(\mathrm{id})\qquad\text{for every permutation }\sigma\text{ of }\{0,\dots,n-1\}.
+\tag{$\mathrm{A}_n$}
+\end{equation}
+Every copula $\pi$ is a weak limit of measures $\mu_{\sigma_n}$. Indeed, let $Z^1,\dots,Z^n$ be independent with law
+$\pi$, almost surely with distinct coordinates, and let $\sigma_n$ send the rank of $Z^j_1$ to the rank of $Z^j_2$
+(ranks counted from $0$). Replacing each coordinate by $(\text{rank}+\frac12)/n$ moves it by at most
+$\sup_t|F_n(t)-t|+\frac1{2n}$, where $F_n$ is the empirical distribution function of that coordinate, which tends to $0$
+almost surely by the Glivenko--Cantelli theorem; and the empirical measure of the $Z^j$ tends weakly to $\pi$. On $Q$
+weak convergence is $W_2$ convergence, and $|V(\mu)-V(\mu')|\le(\E|X|^2)^{1/2}W_2(\mu,\mu')$. Hence, if \eqref{An} holds
+for all $n$, then $V(\pi)=\lim_n A_n(\sigma_n)\ge\lim_n A_n(\mathrm{id})=V(\text{diagonal})=37/60$ for every copula
+$\pi$, the last limit by the same argument applied to the diagonal. So \eqref{An} for all $n$ implies
+Conjecture~\ref{conj}.
+
+The map $A_n$ is invariant under the eight symmetries of the square acting on permutation matrices, so
+$A_n(\mathrm{rev})=A_n(\mathrm{id})$ for the full reversal $\mathrm{rev}(i)=n-1-i$. Numerically \eqref{An} holds
+for every permutation when $n\le 8$, with equality only at $\mathrm{id}$ and $\mathrm{rev}$ (Section~\ref{sec:numerics}).
+
+\begin{definition}
+A permutation $\sigma$ is \emph{layered} if there are integers $0=k_0<k_1<\dots<k_m=n$ such that, for each $\ell$,
+$\sigma$ maps $\{k_\ell,\dots,k_{\ell+1}-1\}$ onto itself either identically or by reversal.
+\end{definition}
+
+\begin{theorem}\label{thm:main}
+Let $n\ge 2$ and let $\sigma$ be a layered permutation of $\{0,\dots,n-1\}$ other than $\mathrm{id}$ and $\mathrm{rev}$.
+Then $A_n(\sigma)>A_n(\mathrm{id})$. The same holds for the images of $\sigma$ under the symmetries of the square.
+\end{theorem}
+
+For $n=2$ every permutation is $\mathrm{id}$ or $\mathrm{rev}$, so the theorem is about $n\ge 3$.
+
+\section{The identity and the re-cut}\label{sec:recut}
+
+Write $s=x_1+x_2$ and $v=x_1-x_2$ for $x\in Q$. Under $\lambda$, $S=X_1+X_2$ has density
+$L(s)=\min(s,2-s)$ on $[0,2]$, and given $S=s$ the variable $V=X_1-X_2$ is uniform on $[-L(s),L(s)]$. Let
+$0=q_0<q_1<\dots<q_n=2$ be the quantiles of $S$ at levels $j/n$ and $T_j=\{x\in Q: q_j<s<q_{j+1}\}$.
+
+\begin{lemma}\label{lem:id}
+$A_n(\mathrm{id})=\sum_j a_j\int_{T_j}s\,dx$.
+\end{lemma}
+
+\begin{proof}
+A coupling of $\lambda$ with $\mu_\sigma$ gives each point $p_i$ a sub-probability $\gamma_i\le\lambda$ of mass $1/n$, and
+$\E[X\cdot Z]=\sum_i\int x\cdot p_i\,d\gamma_i$. For $\sigma=\mathrm{id}$, $x\cdot p_j=a_js$, and with $a_0<\dots<a_{n-1}$
+the sum $\sum_j a_j\int s\,d\gamma_j$ under $\sum_j\gamma_j=\lambda$, $\gamma_j(Q)=1/n$, is largest when $\gamma_j$ is
+$\lambda$ on $T_j$ (the rearrangement inequality applied to the law of $S$).
+\end{proof}
+
+Any partition of $Q$ into regions $R_0,\dots,R_{n-1}$ of area $1/n$ gives the coupling $\gamma_i=\lambda|_{R_i}$, so
+$A_n(\sigma)\ge\sum_i\int_{R_i}x\cdot p_i\,dx$.
+
+Consider a block of $r\ge 2$ consecutive values $k,\dots,k+r-1$ with $k+r\le n$, and let $\sigma$ reverse it and fix every
+other value. Its moved points are $p_{k+i}=(a_{k+i},a_{k+r-1-i})$, $0\le i\le r-1$; they share
+$p_1+p_2=2\bar a$ with $\bar a=a_k+(r-1)/(2n)$, and $p_1-p_2=w_i:=(2i+1-r)/n$, increasing in $i$. Keep $T_j$ for every
+fixed point, and cut $U=T_k\cup\dots\cup T_{k+r-1}=\{q_k<s<q_{k+r}\}$ into the regions $R_0,\dots,R_{r-1}$ of area $1/n$
+cut out by consecutive quantiles of $v$ on $U$, from the smallest values of $v$ up; give $R_i$ to $p_{k+i}$. Since
+$x\cdot p=\frac12\bigl(s(p_1+p_2)+v(p_1-p_2)\bigr)$, Lemma~\ref{lem:id} gives $A_n(\sigma)-A_n(\mathrm{id})\ge D$ with
+\[
+D=\sum_{i=0}^{r-1}\int_{R_i}\Bigl(\bar a s+\tfrac12 w_iv\Bigr)dx-\sum_{j=k}^{k+r-1}a_j\int_{T_j}s\,dx
+=\frac1{n^2}\Bigl(\sum_{i=0}^{r-1}(i-\tfrac{r-1}2)\,\nu_i-\sum_{i=0}^{r-1}(i-\tfrac{r-1}2)\,m_i\Bigr),
+\]
+where $m_i=n\int_{T_{k+i}}s\,dx$ is the mean of $S$ on the strip $T_{k+i}$ and $\nu_i=n\int_{R_i}v\,dx$ the mean of $V$
+on $R_i$.
+
+\begin{lemma}\label{lem:split}
+For real numbers $c_0,\dots,c_{r-1}$,
+$\sum_i(i-\frac{r-1}2)c_i=\sum_{t=1}^{r-1}\frac{t(r-t)}r\,\Delta_t(c)$ with
+$\Delta_t(c)=\frac1{r-t}\sum_{i\ge t}c_i-\frac1t\sum_{i<t}c_i$.
+\end{lemma}
+
+\begin{proof}
+With $\bar c$ the mean, $\sum_i i(c_i-\bar c)=\sum_{t\ge1}\sum_{i\ge t}(c_i-\bar c)$, and
+$\sum_{i\ge t}(c_i-\bar c)=(r-t)\bigl(\frac1{r-t}\sum_{i\ge t}c_i-\bar c\bigr)=\frac{t(r-t)}r\Delta_t(c)$.
+\end{proof}
+
+So $n^2D=\sum_{t=1}^{r-1}\frac{t(r-t)}r\bigl(\Delta_t(\nu)-\Delta_t(m)\bigr)$. Both $\nu$ and $m$ are the means of a
+variable over its own quantile cells of mass $1/n$ on $U$: $\Delta_t(\nu)$ is the gap between the mean of $V$ above and
+below its quantile at mass $t/n$ on $U$, and $\Delta_t(m)$ the same gap for $S$.
+
+\section{A dispersive comparison on diagonal bands}
+
+Fix $0\le\alpha<\beta\le2$ with $(\alpha,\beta)\ne(0,2)$ and let $U=\{\alpha<s<\beta\}$, of area $\rho$. Let $\Phi_S$ and
+$\Phi_V$ be the distribution functions of $S$ and $V$ under $\lambda|_U$ (total mass $\rho$), $Q_S,Q_V$ their inverses on
+$(0,\rho)$, and $\phi_S=L\circ Q_S$, $\phi_V=g\circ Q_V$ the densities read at mass level $\mu$, where
+$g(y)=\frac12\bigl|(\alpha,\beta)\cap(|y|,2-|y|)\bigr|$ is the density of $V$ under $\lambda|_U$. Write $\mu'=\rho-\mu$.
+
+\begin{lemma}\label{lem:disp}
+For $0<\mu<\rho$, $\phi_V(\mu)\le\sqrt{2\min(\mu,\mu')}\le\phi_S(\mu)$. If $\alpha>0$ there is $c>0$ with
+$\phi_V(\mu)<\phi_S(\mu)$ for $0<\mu<c$, and if $\beta<2$ there is $c>0$ with $\phi_V(\mu)<\phi_S(\mu)$ for $\rho-c<\mu<\rho$.
+\end{lemma}
+
+\begin{proof}
+Let $s=Q_S(\mu)$. If $s\le1$, then $\mu=\int_\alpha^sL\le\int_0^s t\,dt=s^2/2$, so $\phi_S(\mu)=s\ge\sqrt{2\mu}$, strictly
+if $\alpha>0$. If $s\ge1$, then $\mu'=\int_s^\beta L\le(2-s)^2/2$ and $\phi_S(\mu)=2-s\ge\sqrt{2\mu'}$, strictly if
+$\beta<2$. In both cases $\phi_S(\mu)\ge\sqrt{2\min(\mu,\mu')}$.
+
+For the left inequality, $g$ is even. For $y\in[-1,0]$ the interval $(-y,2+y)$ grows with $y$ and each of its ends
+moves at unit speed, so $g$ is nondecreasing on $[-1,0]$, $g(-1)=0$, and $g(y)-g(z)\le y-z$ for $-1\le z\le y\le0$. Hence
+for $y=Q_V(\mu)\le0$,
+\[
+\mu=\int_{-1}^yg(z)\,dz\ge\int_{-1}^y\bigl(g(y)-(y-z)\bigr)_+dz\ge\tfrac12g(y)^2,
+\]
+so $\phi_V(\mu)\le\sqrt{2\mu}$, and $\mu\le\mu'$ by the symmetry of $g$. The case $y\ge0$ is the mirror image.
+
+For the strict inequality let $\alpha>0$. If $\alpha<1$, put $c=\min(\Phi_S(1),\rho)>0$: for $\mu<c$ we have $Q_S(\mu)<1$
+and $\phi_S(\mu)>\sqrt{2\mu}\ge\phi_V(\mu)$ by the first paragraph. If $\alpha\ge1$, put $c=\rho/2$: then $Q_S(\mu)\ge1$, and
+for $\mu<c$ we have $\mu<\mu'$, so $\phi_S(\mu)\ge\sqrt{2\mu'}>\sqrt{2\mu}\ge\phi_V(\mu)$. The case $\beta<2$ follows by
+applying the map $(x_1,x_2)\mapsto(1-x_2,1-x_1)$, which preserves $\lambda$, fixes $v$, sends $s$ to $2-s$ and the band
+$(\alpha,\beta)$ to $(2-\beta,2-\alpha)$, and reverses the mass levels of $S$.
+\end{proof}
+
+\begin{proposition}\label{prop:block}
+Let $n\ge3$, $2\le r\le n-1$, $0\le k\le n-r$. Then $D>0$ for the reversal of the block $k,\dots,k+r-1$.
+\end{proposition}
+
+\begin{proof}
+Take $\alpha=q_k$, $\beta=q_{k+r}$; since $r<n$, $(\alpha,\beta)\ne(0,2)$. Since $Q_S'=1/\phi_S$ and
+$Q_V'=1/\phi_V$, Lemma~\ref{lem:disp} shows that $h=Q_V-Q_S$ is nondecreasing on $(0,\rho)$. For $\tau=t/n$,
+\[
+\Delta_t(\nu)-\Delta_t(m)=\frac1{\tau(\rho-\tau)}\int_0^\tau\!\!\int_\tau^\rho\bigl(h(\mu)-h(\mu_0)\bigr)\,d\mu\,d\mu_0\ge0.
+\]
+If $\alpha>0$, Lemma~\ref{lem:disp} gives $c>0$ with $h$ strictly increasing on $(0,c)$, so $h(\mu)>h(\mu_0)$ whenever
+$\mu_0<\min(\tau,c)/2$ and $\mu>\tau$; the integral is then positive for every $t$. If $\alpha=0$ then $\beta<2$, $h$ is
+strictly increasing on some $(\rho-c,\rho)$, and $h(\mu)>h(\mu_0)$ whenever $\mu_0<\tau$ and
+$\mu>\rho-\min(\rho-\tau,c)/2$. By Lemma~\ref{lem:split}, $n^2D>0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let the reversed runs of $\sigma$ be $B_1,\dots,B_m$, of sizes $r_\ell\ge2$. If some $r_\ell=n$ then $\sigma=\mathrm{rev}$;
+otherwise each $r_\ell\le n-1$, and $m\ge1$ since $\sigma\ne\mathrm{id}$. The unions $U_\ell$ of the strips of the runs are
+disjoint, so performing the re-cut of Section~\ref{sec:recut} inside every $U_\ell$ and keeping the other strips is a partition of $Q$
+into regions of area $1/n$ matched to the points of $\mu_\sigma$. Its value is $A_n(\mathrm{id})+\sum_\ell D_\ell$, and
+each $D_\ell>0$ by Proposition~\ref{prop:block}. The symmetries of the square preserve $\lambda$ and the grid, so $A_n$
+is invariant under them.
+\end{proof}
+
+\begin{remark}
+For $r=2$ at the corner ($k=0$ or $k=n-2$, $n\ge4$) the bound is exactly
+$n^2D=\frac{2\sqrt2-2}{3}\,n^{-1/2}\approx0.276\,n^{-1/2}$, while the measured gap $n^2(A_n(\sigma)-A_n(\mathrm{id}))$ is
+about $0.344\,n^{-1/2}$ ($n=8,12,16$). The corner transposition is the cheapest move, so the margin in \eqref{An} near
+the identity is of order $n^{-5/2}$.
+\end{remark}
+
+\section{Computations}\label{sec:numerics}
+
+All computations use exact moments of $S$ and one-dimensional quadrature of the law of $V$ on a band.
+\begin{enumerate}[leftmargin=*]
+\item Check of \eqref{An} over every permutation for $n\le8$ (one per class under the symmetries of the square;
+5,282 classes at $n=8$), with $A_n$ computed by a smoothed semi-discrete dual on a $40\times40$ grid of cells.
+No permutation falls below the identity; the smallest positive gap is the
+corner adjacent transposition ($n^2(A_n(\sigma)-A_n(\mathrm{id}))=0.1215$ at $n=8$), and the first non-layered
+permutations are corner 3-cycles ($0.3944$ at $n=8$).
+\item The bound $D$ for every block reversal, $3\le n\le48$, $2\le r\le n-1$, every $k$: all positive, with minimum at the
+corner adjacent transposition, $n^{5/2}D=0.2761$, matching the closed form above. Quadrature error below $10^{-8}$.
+\item The identity of Lemma~\ref{lem:split} applied to $D$, checked against the direct evaluation for $n=5,8,13$ and
+every $(k,r)$: difference below $1.1\times10^{-8}$; every term $\Delta_t(\nu)-\Delta_t(m)$ is positive.
+\end{enumerate}
+
+\section{What remains}
+
+Theorem~\ref{thm:main} covers the layered permutations and their images under the symmetries of the square. For a
+non-layered $\sigma$ the moved points do not share a value of $p_1+p_2$, and a cut of a band along one direction is not
+enough on the whole square: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells
+optimally never beats the strips for any $\theta$ when $n=4$. Inside a window of a few strips the same directional cut
+does give positive bounds for every indecomposable block permutation that was tested ($n=8$, windows of $3$, $4$, $5$
+strips), so a proof of \eqref{An} along these lines would need cuts whose direction varies across the square.
+
+\section*{Acknowledgements and funding}
+The research presented in this paper was supported by the European Research
+Council (ERC) under the European Union's Horizon Europe research and
+innovation programme (grant agreement No.~101041711), by the Simons
+Foundation as part of the Collaboration on the Mathematical and Scientific
+Foundations of Deep Learning, by Heights Labs, by Convex Nexus Capital, by
+the Israel Science Foundation (grant number 2258/19), and by the Israel
+Science Foundation (ISF Grant 4101/25). Computational resources were
+provided in part by Google Cloud through its education credits program
+(credit 530550103).
+
+\section*{Declaration of competing interest}
+The author holds equity in Heights Labs and in Convex Nexus Capital and
+has a management role at Convex Nexus Capital. These entities are included
+in the funding declaration above.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+The paper comes out of Math Brain, an ongoing project on the use of AI systems for research mathematics. In November 2026
+Claude Opus~5.5 (Anthropic), working in Claude Code, found the reduction, the re-cut construction and the proofs, wrote and
+ran the computations of Section~\ref{sec:numerics}, and wrote the paper. The author directed the work and is responsible
+for the content of the paper and for decisions concerning its dissemination.
+
+\section*{Data availability}
+No data were used. The code for the computations of Section~\ref{sec:numerics}, with its output, is available at
+\url{https://github.com/yspennstate/wasserstein-layered-permutation-copulas}.
+
+\begin{thebibliography}{9}
+\bibitem{Schrott} S.~Schrott, \emph{Couplings farthest from the independent Gaussian}, arXiv:2609.10467 (2026).
+\end{thebibliography}
+
+\end{document}
