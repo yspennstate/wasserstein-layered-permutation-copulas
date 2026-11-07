@@ -11,7 +11,7 @@ points $((i+\frac12)/n,(\sigma(i)+\frac12)/n)$: the identity permutation is the 
 The note proves this for every layered permutation (a concatenation of decreasing runs of consecutive values) and its
 images under the symmetries of the square: each such permutation other than the identity and the reversal is strictly
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
-blocks of at most four consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four.
+blocks of at most five consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four and five.
 The general case remains open; the computations of Section 5 find no counterexample among all permutations with
 $n\le 8$.
 
@@ -34,6 +34,14 @@ Python 3 with numpy and scipy. Each script writes its output next to itself.
 - Interval arithmetic (mpmath): `tau1230_lower_iv.py` and `tau1320_onesided_iv.py` (bands on one side of the diagonal),
   `tau1230_cross_iv.py 0.05` and `tau1320_cross_iv.py 0.25` (bands crossing it, mass at most 4/9), the proof of
   Proposition 4.4; `tau1302_lower_iv.py` and `tau1302_cross_iv.py 0.05` prove $F(1302)>0$ directly as a check.
+- Blocks of five: `win_r5_mass.py` (the window bound for all 70 blocks on a grid of bands of mass at most 5/9),
+  `orbits_r5.py` (the 25 orbits), `gq_scan.py` (the quintile partition on the same grid). Interval arithmetic for
+  Proposition 4.5: `gq_onesided_iv.py` and `gq_cross_iv.py 0.05` (the quintile partition for the 24 orbits other than that
+  of 12403; `gq_cross_iv_all.out` collects the crossing runs), `hs12403_iv.py 0.05` (the $s$ then $v$ partition for
+  12403); `tau12430_G.py`, `tau12430_G_iv.py` and `tau12430_G_cross_iv.py 0.05` treat 12430, the orbit with the
+  smallest margin, separately as a check. `gq_cross_formula_res.py` compares the crossing-band formula used in
+  `gq_cross_iv.py` with a direct evaluation of the quintile partition on jittered grids of 500, 1000 and 2000 points a
+  side; the differences shrink with the grid.
 
 ## Funding
 

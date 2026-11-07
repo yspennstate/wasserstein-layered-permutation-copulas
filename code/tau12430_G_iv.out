@@ -1,0 +1,16 @@
+check t=0.00 bottom closed [0.95533622, 0.95533622]  grid +0.95565
+check t=0.00 top    closed [0.07948354, 0.07948354]  grid +0.07960
+check t=0.05 bottom closed [0.974181, 0.974181]  grid +0.97555
+check t=0.05 top    closed [0.11112757, 0.11112757]  grid +0.11180
+check t=0.30 bottom closed [1.5055314, 1.5055314]  grid +1.50699
+check t=0.30 top    closed [0.92628221, 0.92628221]  grid +0.93025
+check t=0.60 bottom closed [2.7891259, 2.7891259]  grid +2.79160
+check t=0.60 top    closed [2.6224593, 2.6224593]  grid +2.62537
+check t=0.90 bottom closed [4.5511954, 4.5511954]  grid +4.55424
+check t=0.90 top    closed [4.5424235, 4.5424235]  grid +4.54665
+bottom bands, t in [0/63, 7/63]: proved G > 0: True; 4 boxes; smallest lower bound [0.396676, 0.396676] at u in [[5.25, 5.25], [7.0, 7.0]]
+bottom bands, t in [7/63, 27/63]: proved G > 0: True; 16 boxes; smallest lower bound [0.346552, 0.346552] at u in [[7.0, 7.0], [8.25, 8.25]]
+bottom bands, t in [27/63, 63/63]: proved G > 0: True; 23 boxes; smallest lower bound [0.0788293, 0.0788293] at u in [[42.75, 42.75], [45.0, 45.0]]
+top bands, t in [0/63, 7/63]: proved G > 0: True; 22 boxes; smallest lower bound [0.00342865, 0.00342865] at u in [[2.625, 2.625], [3.0625, 3.0625]]
+top bands, t in [7/63, 27/63]: proved G > 0: True; 26 boxes; smallest lower bound [0.012941, 0.012941] at u in [[8.875, 8.875], [9.5, 9.5]]
+top bands, t in [27/63, 63/63]: proved G > 0: True; 23 boxes; smallest lower bound [0.0576566, 0.0576566] at u in [[42.75, 42.75], [45.0, 45.0]]

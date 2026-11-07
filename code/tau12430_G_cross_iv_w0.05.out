@@ -1,0 +1,6 @@
+point check band (0.9428,2.0000): interval G [0.02829567458, 0.02829567462], grid G +0.05035
+point check band (0.6000,1.5000): interval G [0.5612083226, 0.5612083226], grid G +0.80941
+point check band (0.9500,1.2000): interval G [0.8635056122, 0.8635056123], grid G +3.77757
+point check band (0.3000,1.7000): interval G [-0.8072938242, -0.8072938242], grid G -0.88502
+point check band (0.9900,1.0200): interval G [0.1498478872, 0.1498478873], grid G +5.04003
+W0 = [0.05, 0.05]: boxes proved 18234, outside the mass range 316, thin-corner boxes set aside 60, FAILED 0; min lower bound of G/M [2.18707e-5, 2.18707e-5] on alpha [[0.957031, 0.957031],[0.958008, 0.958008]] beta [[0.0585938, 0.0585938],[0.0595703, 0.0595703]]

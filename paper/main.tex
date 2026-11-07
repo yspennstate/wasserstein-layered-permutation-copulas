@@ -40,8 +40,8 @@ runs, other than the identity and the full reversal. The proof re-cuts the optim
 union of the moved strips, writes the gain as a weighted sum of two-cell comparisons, and settles each comparison by a
 dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a diagonal band. The same re-cut, done
 in two steps inside a window of three or four strips, gives the strict inequality for every permutation that splits
-into blocks of consecutive values of length at most four (each block reversed or permuted arbitrarily), once $n\ge9$;
-for blocks of length four the positivity of six explicit functionals is proved with interval arithmetic.
+into blocks of consecutive values of length at most five (each block reversed or permuted arbitrarily), once $n\ge9$;
+for blocks of length four and five the positivity of explicit functionals is proved with interval arithmetic.
 \end{abstract}
 
 \maketitle
@@ -93,7 +93,7 @@ Then $A_n(\sigma)>A_n(\mathrm{id})$. The same holds for the images of $\sigma$ u
 \end{theorem}
 
 For $n=2$ every permutation is $\mathrm{id}$ or $\mathrm{rev}$, so the theorem is about $n\ge 3$. Section~\ref{sec:windows}
-extends Theorem~\ref{thm:main} to permutations built from blocks of length at most four (Theorem~\ref{thm:windows}).
+extends Theorem~\ref{thm:main} to permutations built from blocks of length at most five (Theorem~\ref{thm:windows}).
 
 \section{The identity and the re-cut}\label{sec:recut}
 
@@ -207,7 +207,7 @@ about $0.344\,n^{-1/2}$ ($n=8,12,16$). The corner transposition is the cheapest 
 the identity is of order $n^{-5/2}$.
 \end{remark}
 
-\section{Windows of three and four values}\label{sec:windows}
+\section{Windows of three, four and five values}\label{sec:windows}
 
 Let $r\ge2$, let $\tau$ be a permutation of $\{0,\dots,r-1\}$, $0\le k\le n-r$, and let $\sigma(k+i)=k+\tau(i)$ for
 $0\le i\le r-1$, $\sigma$ the identity elsewhere. Put $u'_i=i+\tau(i)-(r-1)$ and $v'_i=i-\tau(i)$. The moved points
@@ -341,19 +341,83 @@ box of parameters gets an enclosure of $\rho F$. Bisecting boxes until the enclo
 Together with the thin case this covers every band of mass at most $4/9$.
 \end{proof}
 
+For $r=5$ there are $71$ indecomposable permutations; one is the reversal, and the other $70$ fall into $25$ orbits under
+the symmetries of the square. On a band $U$ let $V_1,\dots,V_5$ be the quintile cells of $V$, from the lowest values to the
+highest, $A$ and $B$ the means of $V$ on $V_5$ and $V_4$, and $s_1,s_2,s_3$ the means of $S$ on $V_5$, $V_4$ and $V_3$. By
+the symmetry $v\mapsto-v$ the means of $V$ on $V_1,V_2$ are $-A,-B$ and the means of $S$ on $V_1,V_2$ are $s_1,s_2$. The
+\emph{quintile partition} gives $V_1,\dots,V_5$ to the indices $i_1,\dots,i_5$ listed in increasing order of $v'_i$, tied
+indices in any order. By Lemma~\ref{lem:window} it gives
+\[
+F_q=(v'_{i_5}-v'_{i_1})A+(v'_{i_4}-v'_{i_2})B+(u'_{i_1}+u'_{i_5})s_1+(u'_{i_2}+u'_{i_4})s_2+u'_{i_3}s_3
+-\sum_{j=0}^{4}(2j-4)S_j,
+\]
+with $S_0,\dots,S_4$ the means of $S$ on the five strips. For $\tau=12403$ the points are
+$(u',v')=(-3,-1),(-1,-1),(2,-2),(-1,3),(3,1)$, and the $s$ then $v$ partition gives the three outer strips to the indices
+$0,2,4$ and splits the two middle strips $T_{k+1}\cup T_{k+2}$ at $v=0$, the lower half to index $1$ and the upper half to
+index $3$. Its value is
+\[
+F_s=4\,\E\bigl[\,|V|\,\big|\,S\in(x_1,x_3)\bigr]-(S_2-S_1)-(S_4-S_0),
+\]
+where $x_1<x_2<x_3<x_4$ are the quintiles of $S$ on $U$.
+
+\begin{proposition}\label{prop:r5}
+Let $\tau$ be one of the $70$ indecomposable permutations of $\{0,\dots,4\}$ other than the reversal. On every band $U$ of
+mass $\rho\le5/9$ some partition gives $F>0$: the $s$ then $v$ partition for the orbit
+$\{12403,14023,20341,30142\}$, and for each of the other $24$ orbits a quintile partition.
+\end{proposition}
+
+\begin{proof}
+By the orbits it suffices to treat one representative of each orbit. Write $U=\{\alpha<s<\beta\}$ and $w=\beta-\alpha$.
+
+\emph{The orbit of $12403$.} Given $S=s$, $|V|$ is uniform on $(0,L(s))$, so
+$\E[|V|\mid S\in(x_1,x_3)]$ is a ratio of $\int L^2/2$ and $\int L$ over $(x_1,x_3)$. On a band with $\beta\le1$ every
+quantity is a length, $F_s=\beta\,G(\alpha/\beta)$ with $x_p=(t^2+p(1-t^2))^{1/2}$ for the band $\{t<s<1\}$, and the means
+are $(x^2+xy+y^2)/(3(x+y))$ and $2(x^2+xy+y^2)/(3(x+y))$ on an interval $(x,y)$, so $G$ is a closed form with no
+singularity on $[0,1]$. For $\alpha\ge1$, $s\mapsto2-s$ maps the band to a band below the diagonal, leaves $V$ unchanged
+and sends strip $j$ to strip $4-j$, which gives a second closed form. Both were enclosed in interval arithmetic on
+subintervals of $[0,1]$: $8$ boxes below the diagonal (smallest lower bound $0.018$) and $7$ above it ($0.221$), so these
+hold for bands of any mass. Across the diagonal, with $\Lambda(x)=\int_0^xL^2/2$ and $K(x)=\int_0^xsL(s)\,ds$,
+\[
+\tfrac{\rho}{5}F_s=2\Lambda(x_3)-2\Lambda(x_1)-K(x_3)+2K(x_2)+K(x_4)-K(\alpha)-K(\beta),
+\]
+which decreases in $x_1$ and $x_3$ (the derivatives are $-L(x_1)^2$ and $L(x_3)(L(x_3)-x_3)$) and increases in $x_2$ and
+$x_4$. The quintiles increase in $\alpha$ and $\beta$, so each box of $(\alpha,2-\beta)$ gets a lower bound from the ends of
+the quintile enclosures. With $w_0=0.05$, $415$ boxes, no failures. When $w<w_0$, $U$ lies in $(1-w_0,1+w_0)$, so
+$L\ge1-w_0$ and $4\E[|V|\mid\cdot\,]\ge2(1-w_0)$, while each difference of means of $S$ is less than $w_0$; hence
+$F_s\ge2-4w_0>0$.
+
+\emph{The other orbits.} The coefficients satisfy $v'_{i_5}-v'_{i_1}>0$, $v'_{i_4}-v'_{i_2}\ge0$, and the coefficients of
+$s_1,s_2,s_3$ sum to $\sum_iu'_i=0$. On bands on one side of the diagonal $F_q=\beta\,G(\alpha/\beta)$ as before; the
+quintiles of $V$ on the band $\{t<s<1\}$ have two closed forms each, with the branch changing at $t=1/9$ and $t=3/7$, and
+$G$ was enclosed on the three pieces of $[0,1]$ in both orientations for all $24$ representatives: $1{,}960$ boxes, smallest
+lower bound $0.0034$. Across the diagonal, $\frac{\rho}{5}F_q$ is a combination of $K$ at $\alpha$, $\beta$ and the
+quintiles of $S$, and of the integrals of $|V|$ and of $S$ over $\{|V|<y\}$ at $y=1$ and at the points $y_1>y_2$ where the
+distribution function $H$ of $|V|$ equals $\frac35\rho$ and $\frac15\rho$. Its derivative in $y_1$ is $\frac12h(y_1)\bigl((c_B-c_A)y_1+(d_2-d_1)\bar s(y_1)\bigr)$ and in $y_2$ is
+$\frac12h(y_2)\bigl(-c_By_2+(2d_3-d_2)\bar s(y_2)\bigr)$, where $c_A,c_B$ are the coefficients of $A,B$, $d_1,d_2,d_3$ those
+of $s_1,s_2,s_3$, $h=H'$ and $\bar s(y)$ the mean of $S$ on $\{|V|=y\}$; where the bracket keeps one sign
+over a box the corresponding end of the enclosure of $y_1$ or $y_2$ is used, and otherwise the whole enclosure. With
+$w_0=0.05$ the $24$ representatives take 112{,}654 boxes, no failures (smallest lower bound of $F_q$: $4.9\cdot10^{-6}$). When $w<w_0$:
+$\rho\ge w(1-w)$, the distribution function of $|V|$ is at most $wx$, so $y_1$, the upper quintile of $V$, is at least
+$\frac35(1-w)$ and $A\ge\frac35(1-w)$, $B\ge0$; every mean of $S$ lies in $(\alpha,\beta)$, so the $s$-terms are at least
+$-Uw$ with $U$ the sum of the positive $u'_i$, and the strip term lies in $[0,6w]$. Hence
+$F_q\ge\frac35(v'_{i_5}-v'_{i_1})(1-w)-(U+6)w$, which decreases in $w$ and is positive at $w=0.05$ in all $24$ cases (smallest value $1.73$).
+\end{proof}
+
 \begin{theorem}\label{thm:windows}
 Let $n\ge9$, and let $\sigma\ne\mathrm{id},\mathrm{rev}$ map each interval $\{k_\ell,\dots,k_{\ell+1}-1\}$ of a cut
 $0=k_0<\dots<k_m=n$ onto itself, acting on each interval either by reversal or by a permutation of an interval of
-length at most four. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
-symmetries of the square. If every interval of length four is reversed or fixed, $n\ge4$ suffices.
+length at most five. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
+symmetries of the square. If every interval of length four or five is reversed or fixed, $n\ge4$ suffices.
 \end{theorem}
 
 \begin{proof}
-Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most four is
-a fixed point, a reversal, one of the two 3-cycles, or one of the twelve blocks of Proposition~\ref{prop:r4}; a reversed
+Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most five is
+a fixed point, a reversal, one of the two 3-cycles, one of the twelve blocks of Proposition~\ref{prop:r4}, or one of the
+seventy blocks of Proposition~\ref{prop:r5}; a reversed
 piece of length $n$ would make $\sigma=\mathrm{rev}$. By Lemma~\ref{lem:window} the gain is at least the sum over the
 moved pieces of $F_\ell/(2n^2)$, and each $F_\ell$ is positive: reversals by Proposition~\ref{prop:block}, 3-cycles by
-Proposition~\ref{prop:r3}, the twelve blocks by Proposition~\ref{prop:r4}, since four strips have mass $4/n\le4/9$.
+Proposition~\ref{prop:r3}, the twelve blocks by Proposition~\ref{prop:r4}, since four strips have mass $4/n\le4/9$, and the
+seventy blocks by Proposition~\ref{prop:r5}, since five strips have mass $5/n\le5/9$.
 \end{proof}
 
 For $n\le8$ every permutation was checked numerically (Section~\ref{sec:numerics}). The blocks $1302$ and $1320$ need the
@@ -377,13 +441,18 @@ bands: agreement to $10^{-7}$; the values agree across each orbit to $5\times10^
 \item The interval enclosures of Proposition~\ref{prop:r4}, in \texttt{mpmath.iv}; the scripts are in the repository. As an
 independent check, $F(1302)$ was also proved positive directly: 17 boxes on one-sided bands (smallest lower bound
 $0.129$) and 1,550 boxes on crossing bands of mass at most $4/9$.
+\item For the $70$ blocks of five values, the better of the $v$ then $s$ and $s$ then $v$ cuts evaluated on an $11\times11$ grid of bands of mass at most
+$5/9$: positive for all $70$, smallest value of $F/\rho$ equal to $0.756$. On the same grid the quintile partition is
+positive for $24$ of the $25$ orbits and negative for the orbit of $12403$, which is why that orbit takes the $s$ then $v$
+partition. For $12403$ the closed forms in the proof of Proposition~\ref{prop:r5} agree with the direct evaluation at
+three bands.
 \end{enumerate}
 
 \section{What remains}
 
-Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most four
-values. Inside a window of five strips a directional cut still gives positive bounds for every indecomposable block that
-was tested ($n=8$), but no closed form of such a cut is known for blocks of five or more values. On the whole square a cut along one direction is not
+Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most five
+values. For blocks of six or more values the partitions of Section~\ref{sec:windows} extend, with sextiles in place of
+quintiles, but the positivity of the resulting functionals on every band of the allowed mass is open. On the whole square a cut along one direction is not
 enough: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells optimally never beats the
 strips for any $\theta$ when $n=4$. A proof of \eqref{An} along these lines would need cuts whose direction varies across
 the square. For $n\le8$ the inequality rests on the computation of Section~\ref{sec:numerics}.

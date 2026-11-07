@@ -1,0 +1,6 @@
+point check band (0.20,0.50): interval Hs [0.40811398, 0.40811398]
+point check band (1.70,2.00): interval Hs [0.22853605, 0.22853605]
+point check band (0.60,1.40): interval Hs [1.0833333, 1.0833333]
+bottom bands, t in [0,1]: proved Hs > 0: True; 8 boxes; smallest lower bound [0.0183718, 0.0183718] at t in [[0.25, 0.25], [0.375, 0.375]]
+top bands, t in [0,1]: proved Hs > 0: True; 7 boxes; smallest lower bound [0.220997, 0.220997] at t in [[0.0, 0.0], [0.25, 0.25]]
+crossing, W0 = [0.05, 0.05]: boxes proved 415, outside the mass range 60, thin-corner boxes 6 (Hs >= 2 - 4 W0 = [1.8, 1.8]), FAILED 0; min lower bound of Hs/M [0.00224352, 0.00224352]
