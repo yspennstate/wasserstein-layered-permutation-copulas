@@ -11,8 +11,8 @@ points $((i+\frac12)/n,(\sigma(i)+\frac12)/n)$: the identity permutation is the 
 The note proves this for every layered permutation (a concatenation of decreasing runs of consecutive values) and its
 images under the symmetries of the square: each such permutation other than the identity and the reversal is strictly
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
-blocks of at most eight consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four to
-eight.
+blocks of at most eight consecutive values, and of at most nine when $n\ge10$, with a computer-assisted proof in interval
+arithmetic for the blocks of four to nine.
 The general case remains open; the computations of Section 5 find no counterexample among all permutations with
 $n\le 8$.
 
@@ -63,6 +63,18 @@ Python 3 with numpy and scipy. Each script writes its output next to itself.
   checks that the orbits cover all 29,092 blocks. `r8_orbit_ctrl.py` checks from the cell integrals that $F$ agrees
   across an orbit (output `r8_orbit_ctrl.out`); `r8_iv_ctrl.py` checks the enclosures at point bands, including the
   reflection (output `r8_iv_ctrl.out`).
+- Blocks of nine: `r9_size.py` counts the 273,342 blocks and their 69,224 orbits (output `r9_size.out`).
+  `r9_comp_scan.py` evaluates the partition 12222 of Proposition 4.9 (one ninth of $S$ left whole, then four pieces of
+  two ninths, each split at $V=0$) from the cell integrals on a grid of bands of mass up to 1, the full square included
+  (`R9_MMAX=1.0`, output `r9_comp_12222.out`): it is negative for 1,253 blocks, on the full square only, and these are
+  positive on bands of mass up to 9/10 (`R9_MMAX=0.9`, output `r9_comp_12222_neg_m09.out`), which is what $n\ge10$ needs.
+  `r9_iv.py` is the interval-arithmetic proof of the partition 12222 on bands of mass up to 9/10 (`R9_MASS=9/10`) for one
+  block from each orbit of the inverse and of $i\mapsto8-\tau(8-i)$, in six shards merged by `r9_iv_merge.py`
+  (7,382,553 boxes, output `r9_iv.out`), which checks that the orbits cover all 273,342 blocks. The map
+  $i\mapsto8-\tau(8-i)$ carries the partition 12222 for $\tau$ to the mirror partition 22221 for its image;
+  `r9_orbit_ctrl.py` checks this relation and the invariance under the inverse from the cell integrals (output
+  `r9_orbit_ctrl.out`), and `r9_iv_ctrl.py` checks the enclosures at point bands, including the reflection (output
+  `r9_iv_ctrl.out`).
 
 ## Funding
 
