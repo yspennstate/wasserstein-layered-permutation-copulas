@@ -1,0 +1,7 @@
+band (0.000,0.943)  F1 closed +0.93608 poly +0.93611 | F2 closed -0.06099 poly -0.06082
+band (0.000,1.000)  F1 closed +0.99356 poly +0.99270 | F2 closed -0.06438 poly -0.06449
+band (0.300,0.900)  F1 closed +1.32987 poly +1.32935 | F2 closed +0.11311 poly +0.11307
+band (0.500,1.400)  F1 closed +1.17141 poly +1.16941 | F2 closed -0.19189 poly -0.19276
+band (0.200,1.800)  F1 closed -0.36426 poly -0.36431 | F2 closed -0.91418 poly -0.91395
+band (1.057,2.000)  F1 closed +0.56832 poly +0.56785 | F2 closed -0.55227 poly -0.55240
+band (1.200,1.900)  F1 closed +0.57152 poly +0.57156 | F2 closed -0.42111 poly -0.42107

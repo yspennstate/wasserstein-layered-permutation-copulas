@@ -38,7 +38,10 @@ from the uniform law than the diagonal points. We prove this, with strict inequa
 that is, every permutation obtained by cutting $0,\dots,n-1$ into runs of consecutive values and reversing some of the
 runs, other than the identity and the full reversal. The proof re-cuts the optimal partition of the identity on the
 union of the moved strips, writes the gain as a weighted sum of two-cell comparisons, and settles each comparison by a
-dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a diagonal band.
+dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a diagonal band. The same re-cut, done
+in two steps inside a window of three or four strips, gives the strict inequality for every permutation that splits
+into blocks of consecutive values of length at most four (each block reversed or permuted arbitrarily), once $n\ge9$;
+for blocks of length four the positivity of six explicit functionals is proved with interval arithmetic.
 \end{abstract}
 
 \maketitle
@@ -89,7 +92,8 @@ Let $n\ge 2$ and let $\sigma$ be a layered permutation of $\{0,\dots,n-1\}$ othe
 Then $A_n(\sigma)>A_n(\mathrm{id})$. The same holds for the images of $\sigma$ under the symmetries of the square.
 \end{theorem}
 
-For $n=2$ every permutation is $\mathrm{id}$ or $\mathrm{rev}$, so the theorem is about $n\ge 3$.
+For $n=2$ every permutation is $\mathrm{id}$ or $\mathrm{rev}$, so the theorem is about $n\ge 3$. Section~\ref{sec:windows}
+extends Theorem~\ref{thm:main} to permutations built from blocks of length at most four (Theorem~\ref{thm:windows}).
 
 \section{The identity and the re-cut}\label{sec:recut}
 
@@ -203,6 +207,158 @@ about $0.344\,n^{-1/2}$ ($n=8,12,16$). The corner transposition is the cheapest 
 the identity is of order $n^{-5/2}$.
 \end{remark}
 
+\section{Windows of three and four values}\label{sec:windows}
+
+Let $r\ge2$, let $\tau$ be a permutation of $\{0,\dots,r-1\}$, $0\le k\le n-r$, and let $\sigma(k+i)=k+\tau(i)$ for
+$0\le i\le r-1$, $\sigma$ the identity elsewhere. Put $u'_i=i+\tau(i)-(r-1)$ and $v'_i=i-\tau(i)$. The moved points
+satisfy $p_1+p_2=2\bar a+u'_i/n$ and $p_1-p_2=v'_i/n$ for $p=p_{k+i}$, with $\bar a$ and $U=\{q_k<s<q_{k+r}\}$ as in
+Section~\ref{sec:recut}. For a region $C$ of positive area write $\E_C$ for the average over $C$ with respect to $\lambda$.
+
+\begin{lemma}\label{lem:window}
+Let $C_0,\dots,C_{r-1}$ be a partition of $U$ into regions of area $1/n$, and
+\[
+F=\sum_{i=0}^{r-1}\bigl(u'_i\,\E_{C_i}[S]+v'_i\,\E_{C_i}[V]\bigr)-\sum_{j=0}^{r-1}(2j-r+1)\,\E_{T_{k+j}}[S].
+\]
+Then $A_n(\sigma)-A_n(\mathrm{id})\ge F/(2n^2)$. If $\sigma$ acts in this way on several disjoint blocks, re-cutting each
+block's strips separately gives $A_n(\sigma)-A_n(\mathrm{id})\ge\sum_\ell F_\ell/(2n^2)$.
+\end{lemma}
+
+\begin{proof}
+Give $C_i$ to $p_{k+i}$ and keep $T_j$ for the fixed points. With $x\cdot p=\frac12(s(p_1+p_2)+v(p_1-p_2))$ and
+$\int_C g\,dx=\frac1n\E_C[g]$,
+$\sum_i\int_{C_i}x\cdot p_{k+i}\,dx=\bar a\int_Us\,dx+\frac1{2n^2}\sum_i(u'_i\E_{C_i}[S]+v'_i\E_{C_i}[V])$, while by
+Lemma~\ref{lem:id} the identity collects
+$\sum_ja_{k+j}\int_{T_{k+j}}s\,dx=\bar a\int_Us\,dx+\frac1{2n^2}\sum_j(2j-r+1)\E_{T_{k+j}}[S]$.
+Disjoint blocks use disjoint unions of strips, so the gains add.
+\end{proof}
+
+For the reversal of the block, $u'_i=0$ and $v'_i=2i-r+1$, and $F/(2n^2)$ is the quantity $D$ of
+Section~\ref{sec:recut}. The strips $T_{k+j}$ are the cells of $U$ between consecutive quantiles of $S$. We use two
+partitions. \emph{$v$ then $s$}: group the indices $i$ by the value of $v'_i$; cut $U$ by $V$ at its quantiles of mass
+$1/n$ times the cumulative group sizes, the lowest values of $V$ going to the group with the smallest $v'$; cut each
+group's region by $S$ into cells of area $1/n$ and give them to the group's indices in increasing order of $u'_i$.
+\emph{$s$ then $v$} is the same with the roles of $(S,u')$ and $(V,v')$ exchanged. The band $U$ is symmetric under
+$v\mapsto-v$, so the median of $V$ on $U$ is $0$.
+
+The symmetries $(x_1,x_2)\mapsto(x_2,x_1)$ and $(x_1,x_2)\mapsto(1-x_2,1-x_1)$ preserve $\lambda$, map strips to strips
+and windows to windows, and replace $\tau$ by $\tau^{-1}$ and by $i\mapsto r-1-\tau^{-1}(r-1-i)$; their composite gives
+$i\mapsto r-1-\tau(r-1-i)$. The second sends the band $\{\alpha<s<\beta\}$ to $\{2-\beta<s<2-\alpha\}$. The image of a partition is a partition with the
+same value of $F$. So it suffices to treat one block in each orbit, on every band.
+
+\begin{proposition}\label{prop:r3}
+Let $n\ge4$ and $\tau=(1,2,0)$ or $(2,0,1)$. Then the $v$ then $s$ partition gives $F>0$ on every band $U$ of three
+consecutive strips.
+\end{proposition}
+
+\begin{proof}
+The two 3-cycles form one orbit; take $\tau=(1,2,0)$, with $(u'_i,v'_i)=(-1,-1),(1,-1),(0,2)$. Let $c$ be the upper
+tercile of $V$ on $U$ (so $c\ge0$), $C_2=U\cap\{v>c\}$, and split the rest $U'=U\setminus C_2$ at the median of $S$ on
+$U'$ into $C_0$ (lower) and $C_1$ (upper). Since $\E_U[V]=0$, $\E_{C_0}[V]+\E_{C_1}[V]=2\E_{U'}[V]=-\E_{C_2}[V]$, and
+\[
+F=3\,\E_{C_2}[V]+\bigl(\E_{C_1}[S]-\E_{C_0}[S]\bigr)-2\bigl(\E_{T_{k+2}}[S]-\E_{T_k}[S]\bigr)
+=\tfrac32(G_V-G_S)+\bigl(\Delta_{U'}(S)-\tfrac12G_S\bigr),
+\]
+where $G_X$ is the mean of $X$ on the upper third of $U$ (by mass) minus its mean on the lower third, and
+$\Delta_{U'}(S)$ the gap between the means of $S$ above and below its median on $U'$. With $h=Q_V-Q_S$ nondecreasing
+(Lemma~\ref{lem:disp}), $G_V-G_S=\frac3\rho\bigl(\int_{2\rho/3}^\rho h-\int_0^{\rho/3}h\bigr)\ge0$. For the second
+bracket, the section of $U'$ over $s$ has length $L(s)+\min(L(s),c)\ge L(s)$, half the section of $U$. For any law,
+the gap between the means above and below the median is $2\min_t\E|X-t|$; the mass of $U'$ is $2/3$ that of $U$, so
+$\Delta_{U'}(S)\ge\frac34\Delta_U(S)$. The upper half of $U$ is its upper third together with the upper half of its
+middle third, in proportions $2:1$, and likewise below, so $\Delta_U(S)>\frac23G_S$. Hence
+$\Delta_{U'}(S)-\frac12G_S>0$ and $F>0$.
+\end{proof}
+
+For $r=4$ there are thirteen indecomposable permutations (no proper initial segment $\{0,\dots,j-1\}$ is mapped onto
+itself); one is the reversal and the other twelve fall into six orbits,
+\[
+\{1302,2031\},\ \{1320,2130,3021,3102\},\ \{3120\},\ \{2301\},\ \{2310,3201\},\ \{1230,3012\},
+\]
+writing $\tau$ as the word $\tau(0)\tau(1)\tau(2)\tau(3)$. On a band $U$ let $S_1,\dots,S_4$ be the means of $S$ on the
+four strips, $d_{41}=S_4-S_1$, $d_{32}=S_3-S_2$, $x_m$ the median of $|V|$ on $U$, $A$ and $B$ the means of $|V|$ above and
+below $x_m$, $T_{\mathrm{out}}$ and $T_{\mathrm{in}}$ the means of $S$ on $\{|v|>x_m\}$ and $\{|v|<x_m\}$, and
+$R_1,R_3$ the means of $S$ on the lowest and highest thirds (by mass, in $s$) of $\{v<x_m\}$. By the symmetry
+$v\mapsto-v$ the quartiles of $V$ on $U$ are $-x_m,0,x_m$.
+
+\begin{lemma}\label{lem:r4forms}
+The $v$ then $s$ partition gives
+\begin{align*}
+F(1302)&=4A+2B-3d_{41}-d_{32}, & F(1320)&=5A+B+(T_{\mathrm{out}}-T_{\mathrm{in}})-3d_{41}-d_{32},\\
+F(2301)&=4A+4B-2d_{41}, & F(2310)&=5A+3B-\tfrac52d_{41}-\tfrac12d_{32},\\
+F(1230)&=4A+2(R_3-R_1)-3d_{41}-d_{32}, & F(3120)&=6A+(T_{\mathrm{hi}}-T_{\mathrm{lo}})-3d_{41}-d_{32},
+\end{align*}
+where $T_{\mathrm{hi}},T_{\mathrm{lo}}$ are the means of $S$ above and below its median on $\{|v|<x_m\}$.
+\end{lemma}
+
+\begin{proof}
+For $1302$ the points are $(u',v')=(-2,-1),(1,-2),(-1,2),(2,1)$; the $v'$ are distinct, so the cells are the quartile
+cells of $V$, $\{v<-x_m\},\{-x_m<v<0\},\{0<v<x_m\},\{v>x_m\}$, carrying $v'=-2,-1,1,2$ and $u'=1,-2,2,-1$. The $V$-means are
+$-A,-B,B,A$, which gives $4A+2B$; the $S$-means are $T_{\mathrm{out}},T_{\mathrm{in}},T_{\mathrm{in}},T_{\mathrm{out}}$,
+and the weights $1-1$ and $-2+2$ cancel them. The strips contribute $-(3S_4+S_3-S_2-3S_1)=-3d_{41}-d_{32}$. The other five are the same
+computation. For 1320, $(u',v')=(-2,-1),(1,-2),(1,0),(0,3)$, the cells are again the $V$-quartiles. For 2301 the points
+are $(\pm1,\pm2)$: the halves $\{v<0\}$, $\{v>0\}$ are split at the $S$-median, which is that of $U$, and the $V$-means
+add to $2(A+B)$ on each side. For 2310, $(u',v')=(-1,-2),(1,-2),(0,1),(0,3)$, the half $\{v<0\}$ is split by $S$ and the
+upper half into $\{0<v<x_m\}$ and $\{v>x_m\}$. For 1230, $(u',v')=(-2,-1),(0,-1),(2,-1),(0,3)$, the top quarter is
+$\{v>x_m\}$ with $V$-mean $A$, the rest $\{v<x_m\}$ has $V$-mean $-A/3$ and is cut into $S$-thirds. For 3120,
+$(u',v')=(0,-3),(-1,0),(1,0),(0,3)$, the outer quarters go to $v'=\pm3$ and $\{|v|<x_m\}$ is split at its $S$-median.
+\end{proof}
+
+\begin{proposition}\label{prop:r4}
+Let $\tau$ be one of the twelve indecomposable non-layered permutations of $\{0,1,2,3\}$. On every band $U$ of mass
+$\rho\le4/9$, the $v$ then $s$ partition gives $F>0$.
+\end{proposition}
+
+\begin{proof}
+By the orbits it suffices to treat the six representatives. Always $A\ge x_m\ge B\ge0$, $T_{\mathrm{hi}}>T_{\mathrm{lo}}$,
+$R_3>R_1$ and $d_{41}>d_{32}>0$. Lemma~\ref{lem:r4forms} gives
+\begin{align*}
+F(3120)-F(1302)&=2(A-B)+(T_{\mathrm{hi}}-T_{\mathrm{lo}}),\qquad F(2301)-F(1302)=2B+d_{41}+d_{32},\\
+F(2310)-F(1302)&=A+B+\tfrac12(d_{41}+d_{32}),\qquad F(1230)\ge F_0:=4A-3d_{41}-d_{32},
+\end{align*}
+all differences positive, and $F(1302)=F_0+2B\ge F_0$. So it remains to show $F_0>0$ and $F(1320)>0$ for
+$\rho\le4/9$. Write $U=\{\alpha<s<\beta\}$ and $w=\beta-\alpha$.
+
+\emph{Thin bands across the diagonal}, $\alpha<1<\beta$, $w<1/3$. On $U$, $L\ge1-w$, so $\rho\ge w(1-w)$. The
+distribution function of $|V|$ on $U$ is $H(x)=\int_\alpha^\beta\min(L(s),x)\,ds\le wx$, and $H(x_m)=\rho/2$, so
+$x_m\ge(1-w)/2$ and $A\ge(1-w)/2$. All $S_j$, $T$ and $R$ lie in $(\alpha,\beta)$, so each difference of them is at
+most $w$ in absolute value. Hence $F_0\ge2(1-w)-4w>0$ and $F(1320)\ge\frac52(1-w)-5w>0$.
+
+\emph{Bands on one side of the diagonal}, $\beta\le1$ (the case $\alpha\ge1$ follows by $s\mapsto2-s$, which leaves $A$,
+$B$, $d_{41}$, $d_{32}$ unchanged and reverses the sign of $T_{\mathrm{out}}-T_{\mathrm{in}}$). Every quantity in the
+functionals is a length, and the band $\{\alpha<s<\beta\}$ is the band $\{\alpha/\beta<s<1\}$ scaled by $\beta$, so
+each functional equals $\beta G(\alpha/\beta)$ for an explicit algebraic function $G$ on $[0,1)$: the quantiles of $S$
+and of $|V|$ solve quadratic equations, and the means are ratios of polynomial integrals. We enclosed $G$ on
+subintervals of $[0,1]$ in interval arithmetic with outward rounding (\texttt{mpmath.iv}), bisecting until the lower
+end of the enclosure is positive: $F_0$ in 24 boxes (smallest lower bound $0.035$), $F(1320)$ in 12 boxes on
+$\beta\le1$ ($0.124$) and 17 boxes on $\alpha\ge1$ ($0.172$). Since this covers every
+$t=\alpha/\beta\in[0,1]$, it holds for bands of any mass.
+
+\emph{Wider bands across the diagonal}, $\alpha<1<\beta$, $\rho\le4/9$, $w\ge w_0$. In the coordinates $(\alpha,2-\beta)\in[0,1]^2$,
+$\rho=(2-\alpha^2-(2-\beta)^2)/2$, and $\rho F$ is a combination of the integrals $K(x)=\int_0^xsL(s)\,ds$ at
+$\alpha$, $\beta$ and the quartiles of $S$, of $N(x)=\int_0^xy\,dH(y)$ at $x_m$ and $1$, and, for $1320$, of
+$P(x_m)=\int_\alpha^\beta s\,(L(s)-x_m)_+\,ds$, which gives $T_{\mathrm{out}}$. The quartiles of $S$ increase in $\alpha$
+and $\beta$, $K$ and $N$ increase and $P$ decreases in $x$, and $x_m$ is enclosed by bisection on the sign of $H(x)-\rho/2$ over a whole box; so each
+box of parameters gets an enclosure of $\rho F$. Bisecting boxes until the enclosure is positive: $F_0$ with $w_0=0.05$ in 2,774 boxes, $F(1320)$ with $w_0=0.25$ in 1,042 boxes, no failures.
+Together with the thin case this covers every band of mass at most $4/9$.
+\end{proof}
+
+\begin{theorem}\label{thm:windows}
+Let $n\ge9$, and let $\sigma\ne\mathrm{id},\mathrm{rev}$ map each interval $\{k_\ell,\dots,k_{\ell+1}-1\}$ of a cut
+$0=k_0<\dots<k_m=n$ onto itself, acting on each interval either by reversal or by a permutation of an interval of
+length at most four. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
+symmetries of the square. If every interval of length four is reversed or fixed, $n\ge4$ suffices.
+\end{theorem}
+
+\begin{proof}
+Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most four is
+a fixed point, a reversal, one of the two 3-cycles, or one of the twelve blocks of Proposition~\ref{prop:r4}; a reversed
+piece of length $n$ would make $\sigma=\mathrm{rev}$. By Lemma~\ref{lem:window} the gain is at least the sum over the
+moved pieces of $F_\ell/(2n^2)$, and each $F_\ell$ is positive: reversals by Proposition~\ref{prop:block}, 3-cycles by
+Proposition~\ref{prop:r3}, the twelve blocks by Proposition~\ref{prop:r4}, since four strips have mass $4/n\le4/9$.
+\end{proof}
+
+For $n\le8$ every permutation was checked numerically (Section~\ref{sec:numerics}). The blocks $1302$ and $1320$ need the
+restriction on the mass: their $v$ then $s$ value is negative on nearly full bands, $\{0<s<1.8\}$ for $1302$ and $\{0.2<s<2\}$ for $1320$.
+
 \section{Computations}\label{sec:numerics}
 
 All computations use exact moments of $S$ and one-dimensional quadrature of the law of $V$ on a band.
@@ -216,16 +372,21 @@ permutations are corner 3-cycles ($0.3944$ at $n=8$).
 corner adjacent transposition, $n^{5/2}D=0.2761$, matching the closed form above. Quadrature error below $10^{-8}$.
 \item The identity of Lemma~\ref{lem:split} applied to $D$, checked against the direct evaluation for $n=5,8,13$ and
 every $(k,r)$: difference below $1.1\times10^{-8}$; every term $\Delta_t(\nu)-\Delta_t(m)$ is positive.
+\item The closed forms of Lemma~\ref{lem:r4forms} against a direct evaluation of the $v$ then $s$ cut on polygons, on seven
+bands: agreement to $10^{-7}$; the values agree across each orbit to $5\times10^{-15}$.
+\item The interval enclosures of Proposition~\ref{prop:r4}, in \texttt{mpmath.iv}; the scripts are in the repository. As an
+independent check, $F(1302)$ was also proved positive directly: 17 boxes on one-sided bands (smallest lower bound
+$0.129$) and 1,550 boxes on crossing bands of mass at most $4/9$.
 \end{enumerate}
 
 \section{What remains}
 
-Theorem~\ref{thm:main} covers the layered permutations and their images under the symmetries of the square. For a
-non-layered $\sigma$ the moved points do not share a value of $p_1+p_2$, and a cut of a band along one direction is not
-enough on the whole square: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells
-optimally never beats the strips for any $\theta$ when $n=4$. Inside a window of a few strips the same directional cut
-does give positive bounds for every indecomposable block permutation that was tested ($n=8$, windows of $3$, $4$, $5$
-strips), so a proof of \eqref{An} along these lines would need cuts whose direction varies across the square.
+Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most four
+values. Inside a window of five strips a directional cut still gives positive bounds for every indecomposable block that
+was tested ($n=8$), but no closed form of such a cut is known for blocks of five or more values. On the whole square a cut along one direction is not
+enough: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells optimally never beats the
+strips for any $\theta$ when $n=4$. A proof of \eqref{An} along these lines would need cuts whose direction varies across
+the square. For $n\le8$ the inequality rests on the computation of Section~\ref{sec:numerics}.
 
 \section*{Acknowledgements and funding}
 The research presented in this paper was supported by the European Research
@@ -250,7 +411,8 @@ ran the computations of Section~\ref{sec:numerics}, and wrote the paper. The aut
 for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data availability}
-No data were used. The code for the computations of Section~\ref{sec:numerics}, with its output, is available at
+No data were used. The code for the computations of Sections~\ref{sec:windows} and~\ref{sec:numerics}, including the
+interval-arithmetic proofs, with its output, is available at
 \url{https://github.com/yspennstate/wasserstein-layered-permutation-copulas}.
 
 \begin{thebibliography}{9}

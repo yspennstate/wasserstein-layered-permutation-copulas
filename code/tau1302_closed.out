@@ -1,0 +1,7 @@
+band (0.000,0.943)  closed +0.38392   win_r.F +0.38372
+band (0.000,1.000)  closed +0.40799   win_r.F +0.40691
+band (0.300,0.900)  closed +0.88010   win_r.F +0.87935
+band (0.500,1.400)  closed +0.73290   win_r.F +0.73082
+band (0.200,1.800)  closed -0.75142   win_r.F -0.75166
+band (0.000,1.800)  closed -0.90597   win_r.F -0.90613
+band (1.057,2.000)  closed +0.38437   win_r.F +0.38372

@@ -1,0 +1,7 @@
+grid G=21: min F/(b-a) = +0.150024 at a=0.0000 b=1.9000 (F=+2.850e-01, mass err 5.6e-17)
+n=4: min over k of n^2 D-bound (F/2) +0.34411 at k=0; corner k=0 +0.34411, k=n-3 +0.34411, middle +0.34411
+n=6: min over k of n^2 D-bound (F/2) +0.36633 at k=3; corner k=0 +0.36633, k=n-3 +0.36633, middle +0.60529
+n=8: min over k of n^2 D-bound (F/2) +0.31725 at k=5; corner k=0 +0.31725, k=n-3 +0.31725, middle +0.71515
+n=16: min over k of n^2 D-bound (F/2) +0.22433 at k=13; corner k=0 +0.22433, k=n-3 +0.22433, middle +0.86433
+n=64: min over k of n^2 D-bound (F/2) +0.11216 at k=0; corner k=0 +0.11216, k=n-3 +0.11216, middle +0.96713
+n=256: min over k of n^2 D-bound (F/2) +0.05608 at k=0; corner k=0 +0.05608, k=n-3 +0.05608, middle +0.99184

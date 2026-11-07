@@ -1,0 +1,4 @@
+point check alpha 0.5000 beta 0.6000: interval F [0.344711674338, 0.344711674342], float F0 0.3447116743
+point check alpha 0.9963 beta 0.3443: interval F [0.671920936972, 0.671920936976], float F0 0.6719209370
+point check alpha 0.7000 beta 0.9000: interval F [1.68308299195, 1.68308299195], float F0 1.6830829919
+W0 = [0.05, 0.05]: boxes proved 2774, outside the mass range 151, thin-corner boxes set aside 35, FAILED 0; min lower bound of F/M [4.28818e-5, 4.28818e-5] on alpha [[0.945313, 0.945313],[0.953125, 0.953125]] beta [[0.46875, 0.46875],[0.484375, 0.484375]]

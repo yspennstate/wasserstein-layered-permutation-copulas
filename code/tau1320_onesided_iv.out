@@ -1,0 +1,10 @@
+lower check (0.30,0.90): b G+ [1.3293502975, 1.3293502975], float F1 1.3293502975
+lower check (0.10,0.50): b G+ [0.59444403242, 0.59444403242], float F1 0.5944440324
+lower check (0.60,0.95): b G+ [2.3266786077, 2.3266786077], float F1 2.3266786077
+upper check (1.10,1.70): (2-a) G- [1.1293502975, 1.1293502975], float F1 1.1293502975
+upper check (1.05,1.50): (2-a) G- [1.867821492, 1.867821492], float F1 1.8678214920
+upper check (1.40,1.90): (2-a) G- [0.47595026141, 0.47595026141], float F1 0.4759502614
+G+ (bands in s <= 1), t in [0/3,1/3]: proved > 0: True; 4 boxes; smallest lower bound [0.124214, 0.124214]
+G+ (bands in s <= 1), t in [1/3,3/3]: proved > 0: True; 8 boxes; smallest lower bound [0.171659, 0.171659]
+G- (bands in s >= 1), t in [0/3,1/3]: proved > 0: True; 8 boxes; smallest lower bound [0.280594, 0.280594]
+G- (bands in s >= 1), t in [1/3,3/3]: proved > 0: True; 9 boxes; smallest lower bound [0.172663, 0.172663]
