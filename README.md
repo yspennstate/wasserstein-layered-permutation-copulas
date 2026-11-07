@@ -11,8 +11,8 @@ points $((i+\frac12)/n,(\sigma(i)+\frac12)/n)$: the identity permutation is the 
 The note proves this for every layered permutation (a concatenation of decreasing runs of consecutive values) and its
 images under the symmetries of the square: each such permutation other than the identity and the reversal is strictly
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
-blocks of at most seven consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four to
-seven.
+blocks of at most eight consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four to
+eight.
 The general case remains open; the computations of Section 5 find no counterexample among all permutations with
 $n\le 8$.
 
@@ -56,6 +56,13 @@ Python 3 with numpy and scipy. Each script writes its output next to itself.
   shards (`--shard i 4`) and merged by `r7_iv_merge.py` (315,613 boxes, output `r7_iv.out`); `r7_iv_ctrl.py` checks its
   enclosures at point bands against `r7_comp_scan.py`, including the reflection used for bands above the diagonal
   (output `r7_iv_ctrl.out`).
+- Blocks of eight: `r8_comp_scan.py` evaluates the partition 2222 of Proposition 4.8 (quartiles of $S$, each split at
+  $V=0$) from the cell integrals on a grid of bands of mass at most 8/9; it is positive for all 29,092 blocks (output
+  `r8_comp_2222.out`). `r8_iv.py` is the interval-arithmetic proof. It runs on one block from each of the 7,578 orbits
+  of the inverse and of $i\mapsto7-\tau(7-i)$, in four shards merged by `r8_iv_merge.py` (output `r8_iv.out`), which
+  checks that the orbits cover all 29,092 blocks. `r8_orbit_ctrl.py` checks from the cell integrals that $F$ agrees
+  across an orbit (output `r8_orbit_ctrl.out`); `r8_iv_ctrl.py` checks the enclosures at point bands, including the
+  reflection (output `r8_iv_ctrl.out`).
 
 ## Funding
 

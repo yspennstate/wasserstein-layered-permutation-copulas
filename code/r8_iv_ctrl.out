@@ -1,0 +1,1 @@
+checks 55; max |float(r8_iv) - float(r8_comp_scan)| and enclosure miss 3.588e-13; reflection diff 5.151e-14; identity max F -2.976e-01
