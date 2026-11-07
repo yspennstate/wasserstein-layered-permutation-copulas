@@ -11,8 +11,8 @@ points $((i+\frac12)/n,(\sigma(i)+\frac12)/n)$: the identity permutation is the 
 The note proves this for every layered permutation (a concatenation of decreasing runs of consecutive values) and its
 images under the symmetries of the square: each such permutation other than the identity and the reversal is strictly
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
-blocks of at most six consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four, five
-and six.
+blocks of at most seven consecutive values, with a computer-assisted proof in interval arithmetic for the blocks of four to
+seven.
 The general case remains open; the computations of Section 5 find no counterexample among all permutations with
 $n\le 8$.
 
@@ -48,6 +48,14 @@ Python 3 with numpy and scipy. Each script writes its output next to itself.
   `r6_ts_ctrl.py` (the identity is negative and the reversal positive under the same partition). `r6_ts_iv.py` is the
   interval-arithmetic proof of Proposition 4.6 for all 460 blocks (31,694 boxes, output `r6_ts_iv.out`);
   `r6_ts_iv_ctrl.py` checks its enclosures against the floating-point evaluation at point bands (output `ctrl_ts.out`).
+- Blocks of seven: `r7_comp_scan.py` evaluates partitions made of pieces of one or two septile strips of $S$, the pairs
+  split at $V=0$, from the cell integrals, on a grid of bands of mass at most 7/9. The partition 2221 of Proposition 4.7
+  alone is positive for all 3,446 blocks (output `r7_comp_2221.out`; with the best of 2221, 2212, 2122, 1222 per band,
+  `r7_comp_2221_2212_2122_1222.out`); `r7_comp_ctrl6.py` checks the same code at six values against `r6_thirds_sign.py`
+  (output `ctrl6.out`). `r7_iv.py` is the interval-arithmetic proof of Proposition 4.7 for all 3,446 blocks, run in four
+  shards (`--shard i 4`) and merged by `r7_iv_merge.py` (315,613 boxes, output `r7_iv.out`); `r7_iv_ctrl.py` checks its
+  enclosures at point bands against `r7_comp_scan.py`, including the reflection used for bands above the diagonal
+  (output `r7_iv_ctrl.out`).
 
 ## Funding
 

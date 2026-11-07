@@ -40,8 +40,8 @@ runs, other than the identity and the full reversal. The proof re-cuts the optim
 union of the moved strips, writes the gain as a weighted sum of two-cell comparisons, and settles each comparison by a
 dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a diagonal band. The same re-cut, done
 in two steps inside a window of three or four strips, gives the strict inequality for every permutation that splits
-into blocks of consecutive values of length at most six (each block reversed or permuted arbitrarily), once $n\ge9$;
-for blocks of length four, five and six the positivity of explicit functionals is proved with interval arithmetic.
+into blocks of consecutive values of length at most seven (each block reversed or permuted arbitrarily), once $n\ge9$;
+for blocks of length four to seven the positivity of explicit functionals is proved with interval arithmetic.
 \end{abstract}
 
 \maketitle
@@ -93,7 +93,7 @@ Then $A_n(\sigma)>A_n(\mathrm{id})$. The same holds for the images of $\sigma$ u
 \end{theorem}
 
 For $n=2$ every permutation is $\mathrm{id}$ or $\mathrm{rev}$, so the theorem is about $n\ge 3$. Section~\ref{sec:windows}
-extends Theorem~\ref{thm:main} to permutations built from blocks of length at most six (Theorem~\ref{thm:windows}).
+extends Theorem~\ref{thm:main} to permutations built from blocks of length at most seven (Theorem~\ref{thm:windows}).
 
 \section{The identity and the re-cut}\label{sec:recut}
 
@@ -432,22 +432,43 @@ $\frac12\sum_k(v'_{i_k^+}-v'_{i_k^-})$. Boxes are bisected until the lower bound
 takes 31{,}694 boxes, with no failures; the smallest lower bound of $F$ is $0.0015$.
 \end{proof}
 
+\begin{proposition}\label{prop:r7}
+Let $\tau$ be one of the $3{,}446$ indecomposable permutations of $\{0,\dots,6\}$ other than the reversal. On every band
+$U$ of mass $\rho\le7/9$ the following partition gives $F>0$ for a suitable assignment of its cells to the indices: cut
+$U$ at the septiles $x_2,x_4,x_6$ of $S$, so that the first three pieces have mass $2\rho/7$ and the last has mass $\rho/7$,
+and cut each of the first three pieces at $V=0$.
+\end{proposition}
+
+\begin{proof}
+With $x_j$, $e_j$ and $\ell_j$ now the septiles of $S$ on $U$ and the means on $(x_j,x_{j+1})$, the seven cells have mass
+$\rho/7=1/n$. As in Proposition~\ref{prop:r6}, the cells of the $k$-th piece ($k=0,1,2$) have $\E[S]=\frac12(e_{2k}+e_{2k+1})$
+and $\E[V]=\pm\frac14(\ell_{2k}+\ell_{2k+1})$, and the last cell has $\E[S]=e_6$ and $\E[V]=0$. If the cells of the $k$-th
+piece go to $i_k^\pm$ and the last cell to $i_3$, then $F=\sum_{j=0}^{6}(A_je_j+B_j\ell_j)$ with $A_j$ and $B_j$ as in
+Proposition~\ref{prop:r6} for $j\le5$ (with $2j-6$ in place of $2j-5$), $A_6=u'_{i_3}-6$ and $B_6=0$. The families of bands
+are those of Proposition~\ref{prop:r6}, with $\rho\le7/9$ across the diagonal, that is $\alpha^2+(2-\beta)^2\ge4/9$.
+The map $s\mapsto2-s$ reverses the order of the pieces, so for $\alpha\ge1$ the reduced family carries the partition with
+the single piece first, again with every $u'_i$ replaced by $-u'_i$. The enclosures and the bisection are as before. For
+all $3{,}446$ blocks this takes 315{,}613 boxes, with no failures; the smallest lower bound of $F$ is $1.2\times10^{-4}$.
+\end{proof}
+
 \begin{theorem}\label{thm:windows}
 Let $n\ge9$, and let $\sigma\ne\mathrm{id},\mathrm{rev}$ map each interval $\{k_\ell,\dots,k_{\ell+1}-1\}$ of a cut
 $0=k_0<\dots<k_m=n$ onto itself, acting on each interval either by reversal or by a permutation of an interval of
-length at most six. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
-symmetries of the square. If every interval of length four, five or six is reversed or fixed, $n\ge4$ suffices.
+length at most seven. Then $A_n(\sigma)>A_n(\mathrm{id})$, and the same holds for the images of $\sigma$ under the
+symmetries of the square. If every interval of length four to seven is reversed or fixed, $n\ge4$ suffices.
 \end{theorem}
 
 \begin{proof}
-Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most six is
+Refine the cut so that $\sigma$ is indecomposable on each interval. An indecomposable piece of length at most seven is
 a fixed point, a reversal, one of the two 3-cycles, one of the twelve blocks of Proposition~\ref{prop:r4}, or one of the
-seventy blocks of Proposition~\ref{prop:r5}, or one of the $460$ blocks of Proposition~\ref{prop:r6}; a reversed
+seventy blocks of Proposition~\ref{prop:r5}, one of the $460$ blocks of Proposition~\ref{prop:r6}, or one of the
+$3{,}446$ blocks of Proposition~\ref{prop:r7}; a reversed
 piece of length $n$ would make $\sigma=\mathrm{rev}$. By Lemma~\ref{lem:window} the gain is at least the sum over the
 moved pieces of $F_\ell/(2n^2)$, and each $F_\ell$ is positive: reversals by Proposition~\ref{prop:block}, 3-cycles by
 Proposition~\ref{prop:r3}, the twelve blocks by Proposition~\ref{prop:r4}, since four strips have mass $4/n\le4/9$, and the
-seventy blocks by Proposition~\ref{prop:r5}, since five strips have mass $5/n\le5/9$, and the $460$ blocks of six by
-Proposition~\ref{prop:r6}, since six strips have mass $6/n\le6/9$.
+seventy blocks by Proposition~\ref{prop:r5}, since five strips have mass $5/n\le5/9$, the $460$ blocks of six by
+Proposition~\ref{prop:r6}, since six strips have mass $6/n\le6/9$, and the $3{,}446$ blocks of seven by
+Proposition~\ref{prop:r7}, since seven strips have mass $7/n\le7/9$.
 \end{proof}
 
 For $n\le8$ every permutation was checked numerically (Section~\ref{sec:numerics}). The blocks $1302$ and $1320$ need the
@@ -478,16 +499,22 @@ partition. For $12403$ the closed forms in the proof of Proposition~\ref{prop:r5
 three bands.
 \item For the $460$ blocks of six values, the partition of Proposition~\ref{prop:r6} with the best assignment, on the
 same kind of grid of bands of mass at most $6/9$ (with two thinner masses added): positive for all $460$, smallest value of
-$F/\rho$ equal to $1.04$, attained by $123450$ and $501234$ on $\{0<s<\sqrt{4/3}\}$. For the identity the same partition
+$F/\rho$ equal to $1.04$, attained by $123450$ and $501234$ on $\{0<s<2-\sqrt{2/3}\}$. For the identity the same partition
 gives negative values, as it must. The closed forms used in the interval enclosures agree with the direct evaluation
 through the integrals of $sL(s)$ and $L(s)^2$ to $10^{-6}$ at the bands checked.
+\item For the $3{,}446$ blocks of seven values, the partition of Proposition~\ref{prop:r7} with the best assignment, on a
+$9\times9$ grid of bands of mass at most $7/9$ with one thin mass added: positive for all $3{,}446$, smallest value of
+$F/\rho$ equal to $1.04$, attained by $1234560$ and $6012345$ on $\{0<s<4/3\}$; the identity is negative. The interval
+enclosures at point bands contain the values computed from the cell integrals, which agree with the septile means to
+$10^{-13}$, also through the reflection used for $\alpha\ge1$.
 \end{enumerate}
 
 \section{What remains}
 
-Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most six
-values. For blocks of seven or more values the partition of Proposition~\ref{prop:r6} has natural analogues (quantile
-cells of $S$ split at $V=0$, or at quantiles of $V$), but their positivity on every band of the allowed mass is open. On the whole square a cut along one direction is not
+Theorems~\ref{thm:main} and~\ref{thm:windows} cover the permutations that split into layers and blocks of at most seven
+values. For blocks of eight or more values the partitions of Propositions~\ref{prop:r6} and~\ref{prop:r7} have natural
+analogues (pieces of $S$ made of one or two quantile strips, the pairs split at $V=0$), but their positivity on every band
+of the allowed mass is open. On the whole square a cut along one direction is not
 enough: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells optimally never beats the
 strips for any $\theta$ when $n=4$. A proof of \eqref{An} along these lines would need cuts whose direction varies across
 the square. For $n\le8$ the inequality rests on the computation of Section~\ref{sec:numerics}.
