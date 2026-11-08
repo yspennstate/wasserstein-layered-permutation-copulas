@@ -42,7 +42,7 @@ dispersive-order inequality between the laws of $x_1+x_2$ and $x_1-x_2$ on a dia
 in two steps inside a window of three or four strips, gives the strict inequality for every permutation that splits
 into blocks of consecutive values of length at most eight (each block reversed or permuted arbitrarily), once $n\ge9$,
 and of length at most nine once $n\ge10$; for blocks of length four to nine the positivity of explicit functionals is
-proved with interval arithmetic. For $n\le9$ the inequality is proved for every permutation by an exact rational
+proved with interval arithmetic. For $n\le10$ the inequality is proved for every permutation by an exact rational
 computation with Laguerre cells.
 \end{abstract}
 
@@ -81,7 +81,7 @@ $\pi$, the last limit by the same argument applied to the diagonal. So \eqref{An
 Conjecture~\ref{conj}.
 
 The map $A_n$ is invariant under the eight symmetries of the square acting on permutation matrices, so
-$A_n(\mathrm{rev})=A_n(\mathrm{id})$ for the full reversal $\mathrm{rev}(i)=n-1-i$. For $n\le9$, \eqref{An}
+$A_n(\mathrm{rev})=A_n(\mathrm{id})$ for the full reversal $\mathrm{rev}(i)=n-1-i$. For $n\le10$, \eqref{An}
 holds for every permutation, with equality only at $\mathrm{id}$ and $\mathrm{rev}$ (Proposition~\ref{prop:small}, a
 computer-assisted proof in exact rational arithmetic).
 
@@ -525,11 +525,11 @@ Proposition~\ref{prop:r8}, since eight strips have mass $8/n\le8/9$, and the $27
 Proposition~\ref{prop:r9}, since for $n\ge10$ nine strips have mass $9/n\le9/10$.
 \end{proof}
 
-For $n\le9$ every permutation is covered by Proposition~\ref{prop:small} below. The blocks $1302$ and $1320$ need the
+For $n\le10$ every permutation is covered by Proposition~\ref{prop:small} below. The blocks $1302$ and $1320$ need the
 restriction on the mass: their $v$ then $s$ value is negative on nearly full bands, $\{0<s<1.8\}$ for $1302$ and $\{0.2<s<2\}$ for $1320$.
 
 \begin{proposition}\label{prop:small}
-For $3\le n\le 9$ and every permutation $\sigma\ne\mathrm{id},\mathrm{rev}$ of $\{0,\dots,n-1\}$,
+For $3\le n\le 10$ and every permutation $\sigma\ne\mathrm{id},\mathrm{rev}$ of $\{0,\dots,n-1\}$,
 $A_n(\sigma)>A_n(\mathrm{id})$.
 \end{proposition}
 
@@ -561,11 +561,11 @@ on each class, this proves the claim.
 All computations use exact moments of $S$ and one-dimensional quadrature of the law of $V$ on a band.
 \begin{enumerate}[leftmargin=*]
 \item The certificate of Proposition~\ref{prop:small}: one permutation per class under the symmetries of the square,
-$1,6,22,114,693,5{,}281$ and $46{,}065$ classes for $n=3,\dots,9$ besides the class of $\mathrm{id}$ (these are the
-known class counts less one). Newton's method on the dual converges in at most six steps with cell masses equal to
-$1/n$ to $10^{-14}$. In every case the smallest gap is at the corner adjacent transposition, with
-$n^2(A_n(\sigma)-A_n(\mathrm{id}))$ equal to $0.1459$, $0.1620$, $0.1528$, $0.1402$, $0.1298$, $0.1214$, $0.1145$ for
-$n=3,\dots,9$; the rounding of the weights and the excess mass lower the certified margin by less than $10^{-5}$ in
+$1,6,22,114,693,5{,}281,46{,}065$ and $456{,}453$ classes for $n=3,\dots,10$ besides the class of $\mathrm{id}$ (the
+orbit counts given by Burnside's lemma, less one; for $n=10$ the classes are checked in four shards). Newton's method
+on the dual brings the cell masses to $1/n$ within $10^{-14}$, in at most six steps for $n\le9$. In every case the smallest gap is at the corner adjacent transposition, with
+$n^2(A_n(\sigma)-A_n(\mathrm{id}))$ equal to $0.1459$, $0.1620$, $0.1528$, $0.1402$, $0.1298$, $0.1214$, $0.1145$, $0.1086$ for
+$n=3,\dots,10$; the rounding of the weights and the excess mass lower the certified margin by less than $10^{-5}$ in
 $W_2^2$. As a control the
 same procedure applied to $\mathrm{id}$ and $\mathrm{rev}$ gives an upper bound above the lower bound, as it must. The
 first non-layered permutations are corner 3-cycles ($0.3935$ at $n=8$).
@@ -617,9 +617,9 @@ analogues (pieces of $S$ made of one or two quantile strips, the pairs split at 
 of the allowed mass is open. On the whole square a cut along one direction is not
 enough: cutting $Q$ into quantile cells of $s\cos\theta+v\sin\theta$ and matching the cells optimally never beats the
 strips for any $\theta$ when $n=4$. A proof of \eqref{An} along these lines would need cuts whose direction varies across
-the square. For $n\le9$ the inequality rests on the exact computation of Proposition~\ref{prop:small}; the same
-certificate applies to larger $n$, at the cost of one Laguerre diagram per class (about $4.5\times10^5$ classes at
-$n=10$).
+the square. For $n\le10$ the inequality rests on the exact computation of Proposition~\ref{prop:small}; the same
+certificate applies to larger $n$, at the cost of one Laguerre diagram per class (about $5.0\times10^6$ classes at
+$n=11$).
 
 \section*{Acknowledgements and funding}
 The research presented in this paper was supported by the European Research

@@ -1,0 +1,4 @@
+n=10 shards=4 lower bound(s) ['0.1013632915011046']
+classes 456453 expected 456453 (Burnside 456454 less 1) malformed 0 FAIL 0
+smallest margin 2.169456e-03 at 0123456798
+VERIFIED
