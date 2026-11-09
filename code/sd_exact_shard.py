@@ -5,6 +5,7 @@ Usage: python sd_exact_shard.py N K k   -> sd_exact_nN_sK_k.out (resumable)
 import sys, os, itertools, time
 from sd_exact import lower_identity, upper
 from sd_fast import canon
+ALPH = "0123456789abcdefghijklmnopqrstuvwxyz"  # one symbol per entry, so a key is a permutation for every n <= 36
 
 def reps(n):
     ident = tuple(range(n)); rev = canon(ident[::-1])
@@ -30,12 +31,12 @@ if __name__ == "__main__":
     done = set()
     if os.path.exists(out):
         for l in open(out, encoding="utf-8"):
-            if l[:1].isdigit(): done.add(l.split()[0])
+            if l.strip() and l[:1] != "#": done.add(l.split()[0])
     f = open(out, "a", encoding="utf-8", newline="\n")
     if not done: f.write("# n=%d shard %d/%d exact lower bound for W2^2(identity) %.16f\n" % (n, k, K, float(L))); f.flush()
     for j, s in enumerate(reps(n)):
         if j % K != k: continue
-        key = "".join(map(str, s))
+        key = "".join(ALPH[x] for x in s)
         if key in done: continue
         U, e = upper(list(s))
         ok = U < L

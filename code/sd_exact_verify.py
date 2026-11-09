@@ -2,7 +2,11 @@
 duplicate or missing class, the class count equal to Burnside's count of orbits of S_n under the 8 symmetries of the
 square (less the class of id and rev), no FAIL, and report the smallest certified margin.
 Usage: python sd_exact_verify.py N K   -> prints a summary (write it to sd_exact_nN.verify)."""
-import sys, re, math
+import sys, re, math, os, gzip
+
+def shard(p):
+    # a shard output may be stored gzipped (p + ".gz")
+    return open(p, encoding="utf-8") if os.path.exists(p) else gzip.open(p + ".gz", "rt", encoding="utf-8")
 
 def involutions(n):
     a, b = 1, 1
@@ -17,17 +21,18 @@ def orbits(n):
     return fix // 8
 
 n, K = int(sys.argv[1]), int(sys.argv[2])
-pat = re.compile(r"^(\d{%d}) (ok|FAIL) (-?\d\.\d{6}e[-+]\d\d) excess (\d\.\de[-+]\d\d)$" % n)
+ALPH = "0123456789abcdefghijklmnopqrstuvwxyz"
+pat = re.compile(r"^([0-9a-z]{%d}) (ok|FAIL) (-?\d\.\d{6}e[-+]\d\d) excess (\d\.\de[-+]\d\d)$" % n)
 keys = set(); bad = fail = 0; low = None; L = set()
 for k in range(K):
-    lines = open("sd_exact_n%d_s%d_%d.out" % (n, K, k), encoding="utf-8").read().split("\n")
+    lines = shard("sd_exact_n%d_s%d_%d.out" % (n, K, k)).read().split("\n")
     assert lines[-1] == "" and lines[-2] == "# done", "shard %d not finished" % k
     L.add(lines[0].split()[-1])
     for l in lines[1:-2]:
         m = pat.match(l)
         if not m: bad += 1; print("malformed", k, repr(l)); continue
         key = m.group(1)
-        assert sorted(key) == sorted("".join(map(str, range(n)))), key
+        assert sorted(key) == sorted(ALPH[:n]), key
         if key in keys: print("duplicate", key)
         keys.add(key)
         if m.group(2) == "FAIL": fail += 1
