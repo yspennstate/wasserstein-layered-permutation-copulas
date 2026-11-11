@@ -30,9 +30,10 @@
 \begin{document}
 
 \begin{abstract}
-Schrott conjectured that among all copulas on the unit square, the diagonal and the antidiagonal couplings are the
-farthest from the uniform law in the quadratic Wasserstein distance, at squared distance $1/10$. By density of
-permutation copulas the conjecture is implied by a statement about $n$ equally weighted grid points: for every
+Catalano and Lavenant conjectured that among all copulas on the unit square, the diagonal and the antidiagonal
+couplings are the farthest from the uniform law in the quadratic Wasserstein distance, at squared distance $1/10$, and
+Ansari proved this. By density of permutation copulas the same bound also follows from a discrete statement about $n$
+equally weighted grid points, which the theorem for copulas does not cover: for every
 permutation $\sigma$ of $\{0,\dots,n-1\}$, the points $\bigl((i+\frac12)/n,(\sigma(i)+\frac12)/n\bigr)$ are no farther
 from the uniform law than the diagonal points. We prove this, with strict inequality, for every layered permutation,
 that is, every permutation obtained by cutting $0,\dots,n-1$ into runs of consecutive values and reversing some of the
@@ -51,10 +52,13 @@ computation with Laguerre cells.
 \section{The problem}
 
 Let $\lambda$ be Lebesgue measure on $Q=[0,1]^2$. A copula is a probability measure on $Q$ with uniform marginals.
-Schrott \cite{Schrott} proved that among all couplings of $n$ standard Gaussians, the ones farthest from the standard
-Gaussian on $\R^n$ in $W_2$ are the signed diagonals, and stated the uniform analogue as a conjecture.
+Wasserstein distances to the independence coupling are used to measure dependence by Mordant and Segers \cite{MS},
+De Keyser and Gijbels \cite{DKG} and Catalano and Lavenant \cite{CL}, and the largest such distance between two
+uniform marginals is asked for in \cite[Remark~3]{CL}, where the following conjecture is stated. Schrott \cite{Schrott}
+proved that among all couplings of $n$ standard Gaussians, the ones farthest from the standard Gaussian on $\R^n$ in
+$W_2$ are the signed diagonals, and recorded the uniform case \cite[Conjecture~1.1]{Schrott}.
 
-\begin{conjecture}[{\cite[Conjecture~1.1]{Schrott}}]\label{conj}
+\begin{conjecture}[{\cite[Remark~3]{CL}}]\label{conj}
 For every copula $\pi$ on $Q$, $W_2^2(\pi,\lambda)\le 1/10$, with equality for the diagonal coupling.
 \end{conjecture}
 
@@ -79,6 +83,10 @@ weak convergence is $W_2$ convergence, and $|V(\mu)-V(\mu')|\le(\E|X|^2)^{1/2}W_
 for all $n$, then $V(\pi)=\lim_n A_n(\sigma_n)\ge\lim_n A_n(\mathrm{id})=V(\text{diagonal})=37/60$ for every copula
 $\pi$, the last limit by the same argument applied to the diagonal. So \eqref{An} for all $n$ implies
 Conjecture~\ref{conj}.
+
+Ansari \cite{Ansari} proves Conjecture~\ref{conj}, with equality exactly at the diagonal and the antidiagonal
+couplings. The measures $\mu_\sigma$ are not copulas, since their marginals are the uniform law on the grid, so
+\eqref{An} for a fixed $n$ is not a case of that theorem; it is the finite statement studied here.
 
 The map $A_n$ is invariant under the eight symmetries of the square acting on permutation matrices, so
 $A_n(\mathrm{rev})=A_n(\mathrm{id})$ for the full reversal $\mathrm{rev}(i)=n-1-i$. For $n\le11$, \eqref{An}
@@ -331,7 +339,7 @@ $B$, $d_{41}$, $d_{32}$ unchanged and reverses the sign of $T_{\mathrm{out}}-T_{
 functionals is a length, and the band $\{\alpha<s<\beta\}$ is the band $\{\alpha/\beta<s<1\}$ scaled by $\beta$, so
 each functional equals $\beta G(\alpha/\beta)$ for an explicit algebraic function $G$ on $[0,1)$: the quantiles of $S$
 and of $|V|$ solve quadratic equations, and the means are ratios of polynomial integrals. We enclosed $G$ on
-subintervals of $[0,1]$ in interval arithmetic with outward rounding (\texttt{mpmath.iv}), bisecting until the lower
+subintervals of $[0,1]$ in interval arithmetic with outward rounding (\texttt{mpmath.iv} \cite{mpmath}), bisecting until the lower
 end of the enclosure is positive: $F_0$ in 24 boxes (smallest lower bound $0.035$), $F(1320)$ in 12 boxes on
 $\beta\le1$ ($0.124$) and 17 boxes on $\alpha\ge1$ ($0.172$). Since this covers every
 $t=\alpha/\beta\in[0,1]$, it holds for bands of any mass.
@@ -535,7 +543,8 @@ $A_n(\sigma)>A_n(\mathrm{id})$.
 
 \begin{proof}
 For a measure $\mu=\frac1n\sum_i\delta_{p_i}$ on $Q$ and weights $\psi\in\mathbb{Q}^n$ let
-$L_i(\psi)=\{x\in Q:|x-p_i|^2-\psi_i\le|x-p_j|^2-\psi_j\text{ for all }j\}$ be the Laguerre cells. Kantorovich duality
+$L_i(\psi)=\{x\in Q:|x-p_i|^2-\psi_i\le|x-p_j|^2-\psi_j\text{ for all }j\}$ be the Laguerre cells, as in the semi-discrete transport problem of Aurenhammer, Hoffmann and
+Aronov \cite{AHA}. Kantorovich duality
 gives the lower bound
 \[
 W_2^2(\mu,\lambda)\ \ge\ \sum_i\int_{L_i(\psi)}\bigl(|x-p_i|^2-\psi_i\bigr)\,dx+\frac1n\sum_i\psi_i ,
@@ -649,12 +658,28 @@ for the content of the paper and for decisions concerning its dissemination.
 \section*{Data availability}
 No data were used. The code for the computations of Sections~\ref{sec:windows} and~\ref{sec:numerics}, including the
 interval-arithmetic proofs, with its output, is available at
-\url{https://github.com/yspennstate/wasserstein-layered-permutation-copulas}.
+\url{https://github.com/yspennstate/wasserstein-layered-permutation-copulas}. The scripts are written in Python with
+NumPy \cite{numpy}, SciPy \cite{scipy} and mpmath \cite{mpmath}.
 
 The paper is part of the Math Brain project, whose public repository is \url{https://github.com/yspennstate/math-brain-public}~\cite{MathBrainRepo}.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
+\bibitem{Ansari} J.~Ansari, \emph{Copulas farthest from independence in quadratic Wasserstein distance},
+arXiv:2609.23940 (2026).
+\bibitem{AHA} F.~Aurenhammer, F.~Hoffmann and B.~Aronov, Minkowski-type theorems and least-squares clustering,
+\emph{Algorithmica} \textbf{20} (1998), 61--76.
+\bibitem{CL} M.~Catalano and H.~Lavenant, \emph{Measures of dependence based on Wasserstein distances},
+arXiv:2510.06034 (2025).
+\bibitem{DKG} S.~De~Keyser and I.~Gijbels, High-dimensional copula-based Wasserstein dependence, \emph{Comput. Statist.
+Data Anal.} \textbf{204} (2025), 108096.
+\bibitem{numpy} C.~R.~Harris et al., Array programming with NumPy, \emph{Nature} \textbf{585} (2020), 357--362.
+\bibitem{mpmath} The mpmath development team, \emph{mpmath: a Python library for arbitrary-precision floating-point
+arithmetic}, \url{https://mpmath.org/}.
+\bibitem{MS} G.~Mordant and J.~Segers, Measuring dependence between random vectors via optimal transport, \emph{J.
+Multivariate Anal.} \textbf{189} (2022), 104912.
 \bibitem{Schrott} S.~Schrott, \emph{Couplings farthest from the independent Gaussian}, arXiv:2609.10467 (2026).
+\bibitem{scipy} P.~Virtanen et al., SciPy 1.0: fundamental algorithms for scientific computing in Python, \emph{Nat.
+Methods} \textbf{17} (2020), 261--272.
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026, \url{https://github.com/yspennstate/math-brain-public}.
 
 \bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research}, October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.

@@ -4,10 +4,12 @@ Yitzchak Shmalo
 
 Paper: [paper/main.pdf](paper/main.pdf) (source [paper/main.tex](paper/main.tex)).
 
-Schrott (arXiv:2609.10467, Conjecture 1.1) conjectured that every copula $\pi$ on $[0,1]^2$ satisfies
-$W_2^2(\pi,\lambda)\le 1/10$, where $\lambda$ is the uniform law and $1/10$ is attained by the comonotone copula. By an
-empirical-rank argument the conjecture is equivalent to a statement about the $n$-point permutation measures on the grid
-points $((i+\frac12)/n,(\sigma(i)+\frac12)/n)$: the identity permutation is the farthest from $\lambda$ for every $n$.
+Catalano and Lavenant (arXiv:2510.06034, Remark 3; recorded by Schrott, arXiv:2609.10467, Conjecture 1.1) conjectured
+that every copula $\pi$ on $[0,1]^2$ satisfies $W_2^2(\pi,\lambda)\le 1/10$, where $\lambda$ is the uniform law and
+$1/10$ is attained by the comonotone copula; Ansari (arXiv:2609.23940) proved it. By an empirical-rank argument the bound
+also follows from a statement about the $n$-point permutation measures on the grid points
+$((i+\frac12)/n,(\sigma(i)+\frac12)/n)$, which are not copulas: the identity permutation is the farthest from $\lambda$
+for every $n$.
 The note proves this for every layered permutation (a concatenation of decreasing runs of consecutive values) and its
 images under the symmetries of the square: each such permutation other than the identity and the reversal is strictly
 closer to $\lambda$ than the identity. Section 4 extends this, for $n\ge 9$, to permutations that split into layers and
